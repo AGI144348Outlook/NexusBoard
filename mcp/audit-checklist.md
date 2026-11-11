@@ -1,0 +1,48 @@
+# Repository MCP audit procedure
+
+**Default mode:** read-only **static analysis**, one repository at a selected commit SHA and one design `mcp` branch revision. Source reading is not a live MCP conformance test. **Never invoke tools, run scripts, run tests, trigger CI, or probe endpoints** during the static audit.
+
+## A. Scope and evidence ledger
+
+- Record repository owner/name, public/private classification, base branch SHA, `mcp` branch SHA, timestamp, source paths and audit-policy version.
+- If the `mcp` branch is missing, recommend it; do not presume the repository requires a live MCP server.
+- Classify the repository as **MCP server**, **MCP client**, **both**, **future candidate**, or **not applicable**. A web UI alone does not establish MCP.
+- Note uncertain assumptions and required additional permissions.
+
+## B. MCP protocol conformance (static)
+
+- Declared MCP revision(s) vs actual imports/configuration/transport code.
+- For 2026-07-28: required request `_meta`, version/header consistency, stateless request model, supported `server/discover` path and correct capability declarations if implemented.
+- Actual tool handlers vs `tools/list`, resources, prompts and optional extensions; code-located evidence for every claim.
+- Transport choice (local stdio or HTTP), endpoint methods, version migration/legacy adapters.
+- Auth at outer server and **each** tool/callee; input schema validation, rate limiting, sensitive output handling, refusal and timeouts.
+- No protocol-level session assumption for latest revision; app-level leases separate.
+- Production configuration may be **not inspectable** from GitHub—mark unknown instead of pass.
+
+## C. Callable tool register
+
+For each proposed/discovered tool: canonical name, server owner, eligible clients, purpose, JSON input/output schema, read/write/privileged impact, data scope, authorization, approval, idempotency, audit trace, errors, dependencies and source file/line or endpoint evidence. Mark **proposed**, **code-located**, **statically inspected**, **live-discovered**, **tested** or **independently verified**.
+
+Identify proposed tools that have no implementation; implemented handlers absent from the manifest; dangerous unsupervised operations; stale tool names; and duplicate incompatible versions. *Do not suggest granting authority just because a tool exists.*
+
+## D. Client/server matrix
+
+- Which processes create MCP clients and which expose servers?
+- Are cross-repository calls actually implemented? Check integration code, not just architecture diagrams.
+- Are user-delegated scopes passed via authenticated transport and rechecked by callees?
+- Are seat, Agent, server, runtime and model roles kept distinct?
+- Are explicit dependencies and fallback failure states documented?
+
+## E. Architecture/governance consistency
+
+Compare `mcp` proposals with `main` `README.md`, `ARCHITECTURE.md`, `GOVERNANCE.md`, `STATUS.md`, code, licenses and test records. Record drift as observed mismatch vs proposal. Never silently rewrite docs or code.
+
+## F. Reporting
+
+Use [audit report template](audit-report-template.md) with evidence, severity, confidence, risk, recommended next action, source SHA, owner and status. Suppress duplicate findings using stable IDs. Secure findings are kept private.
+
+## G. Active verification (separate approval gate)
+
+Live discovery, HTTP/stdio probes, diagnostics, tests, benchmarking and CI **must not** begin until a pre-test Issue/Discussion is published **in the repository being tested**. Include discussion with Timothy, problem, hypothesis, solution, exact method, expected results and disconfirming criteria. After actual execution, follow up **in the same thread**, separating observations and interpretations with evidence and limitations. If publishing is blocked, report it and do not test.
+
+The `mcp` branch is a **proposed capability registry**, not an activation signal.

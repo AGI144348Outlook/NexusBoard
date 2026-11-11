@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NexusBoard custom repository MCP audit manifest",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "repository",
+    "branch",
+    "base_branch",
+    "audit_mode",
+    "application_status",
+    "mcp_protocol_profile",
+    "roles_document",
+    "tool_registry",
+    "protocol_document",
+    "automatic_tests_allowed"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "manifest_version": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "base_branch": {
+      "type": "string"
+    },
+    "audit_mode": {
+      "enum": [
+        "read-only-static",
+        "approved-dynamic"
+      ]
+    },
+    "application_status": {
+      "enum": [
+        "proposal-only",
+        "implementation-in-progress",
+        "implemented",
+        "tested"
+      ]
+    },
+    "mcp_protocol_profile": {
+      "type": "string"
+    },
+    "protocol_baseline": {
+      "type": "string"
+    },
+    "roles_document": {
+      "type": "string"
+    },
+    "tool_registry": {
+      "type": "string"
+    },
+    "protocol_document": {
+      "type": "string"
+    },
+    "audit_checklist": {
+      "type": "string"
+    },
+    "implementation_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "live_mcp_endpoints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "automatic_tests_allowed": {
+      "type": "boolean"
+    },
+    "before_testing": {
+      "type": "string"
+    },
+    "after_testing": {
+      "type": "string"
+    },
+    "maintenance": {
+      "type": "object"
+    }
+  }
+}

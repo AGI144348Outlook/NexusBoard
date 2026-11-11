@@ -1,0 +1,25 @@
+{
+  "$schema": "./mcp/schemas/repository-mcp-manifest.schema.json",
+  "manifest_version": "0.1.0",
+  "profile": "nexusboard-repository-mcp-audit",
+  "repository": "AGI144348Outlook/NexusBoard",
+  "branch": "mcp",
+  "base_branch": "main",
+  "audit_mode": "read-only-static",
+  "application_status": "proposal-only",
+  "mcp_protocol_profile": "2026-07-28",
+  "protocol_baseline": "https://modelcontextprotocol.io/specification/2026-07-28",
+  "roles_document": "mcp/role-assignments.md",
+  "tool_registry": "mcp/tool-proposals.json",
+  "protocol_document": "mcp/protocol-profile.md",
+  "audit_checklist": "mcp/audit-checklist.md",
+  "implementation_evidence": [],
+  "live_mcp_endpoints": [],
+  "automatic_tests_allowed": false,
+  "before_testing": "pre-test Issue/Discussion published in repository under test",
+  "after_testing": "same thread contains results, observations vs interpretations, failures, limitations",
+  "maintenance": {
+    "auditable_from": "mcp branch",
+    "promotion": "human-reviewed PR to main"
+  }
+}

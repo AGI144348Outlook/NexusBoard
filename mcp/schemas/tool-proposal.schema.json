@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NexusBoard proposed MCP tool catalog",
+  "type": "object",
+  "required": [
+    "catalog_version",
+    "status",
+    "tools"
+  ],
+  "properties": {
+    "catalog_version": {
+      "type": "string"
+    },
+    "reference_standard": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "warning": {
+      "type": "string"
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "service",
+          "caller",
+          "type",
+          "purpose",
+          "input",
+          "output",
+          "authorization",
+          "status",
+          "implemented_evidence",
+          "live_discovery_evidence",
+          "test_evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "caller": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "enum": [
+              "read",
+              "write",
+              "privileged"
+            ]
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "input": {
+            "type": "object"
+          },
+          "output": {
+            "type": "object"
+          },
+          "authorization": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "approval": {
+            "type": "string"
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "proposed",
+              "code-located",
+              "statically-inspected",
+              "live-discovered",
+              "tested",
+              "independently-verified"
+            ]
+          },
+          "implemented_evidence": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "live_discovery_evidence": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "test_evidence": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

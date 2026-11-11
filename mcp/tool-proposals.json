@@ -1,0 +1,670 @@
+{
+  "catalog_version": "0.1.0",
+  "reference_standard": "2026-07-28",
+  "status": "proposal-only",
+  "warning": "No tools in this catalog are claimed live, callable, or authorized.",
+  "tools": [
+    {
+      "id": "nb.corporate.status",
+      "service": "corporate-gateway",
+      "caller": [
+        "external-approved-mcp-client"
+      ],
+      "type": "read",
+      "purpose": "Read authorized high-level organization status",
+      "input": {
+        "type": "object",
+        "properties": {
+          "view": {
+            "type": "string",
+            "enum": [
+              "public",
+              "authorized"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "entity_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "audit_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "authorization": [
+        "corporate:read"
+      ],
+      "approval": "not required for public status; authenticated for restricted fields",
+      "risks": [
+        "information disclosure"
+      ],
+      "evidence_paths": [
+        "specifications/interfaces/corporate-gateway.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.seat.catalog",
+      "service": "corporate-gateway",
+      "caller": [
+        "external-approved-mcp-client",
+        "authorized-seat-mcp-client"
+      ],
+      "type": "read",
+      "purpose": "Discover declared seat capability references without granting access",
+      "input": {
+        "type": "object",
+        "properties": {
+          "seat_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "seats": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "authorization": [
+        "seats:discover"
+      ],
+      "approval": "not required for already-authorized data",
+      "risks": [
+        "privileged capability enumeration"
+      ],
+      "evidence_paths": [
+        "docs/agent-organization/SEATS.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.mission.create",
+      "service": "corporate-gateway",
+      "caller": [
+        "external-approved-mcp-client"
+      ],
+      "type": "write",
+      "purpose": "Propose or create one bounded, attributable corporate mission",
+      "input": {
+        "type": "object",
+        "properties": {
+          "objective": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_seat": {
+            "type": "string"
+          },
+          "budget_ceiling": {
+            "type": "number",
+            "minimum": 0
+          },
+          "idempotency_key": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "objective",
+          "target_seat",
+          "idempotency_key"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "mission_id": {
+            "type": "string"
+          },
+          "operation_status": {
+            "type": "string"
+          },
+          "audit_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation_status"
+        ]
+      },
+      "authorization": [
+        "mission:create",
+        "target_seat:delegate"
+      ],
+      "approval": "required where mission exceeds delegated privileges, cost, or impact",
+      "risks": [
+        "unauthorized automation",
+        "cost",
+        "duplicate effects"
+      ],
+      "evidence_paths": [
+        "specifications/interfaces/corporate-gateway.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.mission.status",
+      "service": "corporate-gateway",
+      "caller": [
+        "external-approved-mcp-client",
+        "authorized-seat-mcp-client"
+      ],
+      "type": "read",
+      "purpose": "Read scoped operational progress and durable checkpoint reference",
+      "input": {
+        "type": "object",
+        "properties": {
+          "mission_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "mission_id"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "mission_id": {
+            "type": "string"
+          },
+          "operation_status": {
+            "type": "string"
+          },
+          "checkpoint_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation_status"
+        ]
+      },
+      "authorization": [
+        "mission:read"
+      ],
+      "approval": "not required for mission-authorized readers",
+      "risks": [
+        "cross-tenant data exposure"
+      ],
+      "evidence_paths": [
+        "specifications/interfaces/corporate-gateway.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.operator.lease.request",
+      "service": "corporate-gateway",
+      "caller": [
+        "external-approved-mcp-client"
+      ],
+      "type": "write",
+      "purpose": "Request bounded external operator docking by authenticated human consent",
+      "input": {
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ttl_seconds": {
+            "type": "integer",
+            "minimum": 60
+          },
+          "purpose": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "scope",
+          "purpose"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "operation_status": {
+            "type": "string"
+          },
+          "lease_handle": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation_status"
+        ]
+      },
+      "authorization": [
+        "operator:dock"
+      ],
+      "approval": "explicit owner permission; server issues opaque application lease",
+      "risks": [
+        "delegation escalation",
+        "stale lease"
+      ],
+      "evidence_paths": [
+        "specifications/protocols/operator-lease.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.evidence.read",
+      "service": "corporate-gateway",
+      "caller": [
+        "external-approved-mcp-client",
+        "authorized-seat-mcp-client"
+      ],
+      "type": "read",
+      "purpose": "Retrieve access-filtered evidence and provenance by durable reference",
+      "input": {
+        "type": "object",
+        "properties": {
+          "evidence_ref": {
+            "type": "string"
+          },
+          "view": {
+            "type": "string",
+            "enum": [
+              "summary",
+              "provenance"
+            ]
+          }
+        },
+        "required": [
+          "evidence_ref"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "evidence_ref": {
+            "type": "string"
+          },
+          "epistemic_status": {
+            "type": "string"
+          },
+          "provenance_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "evidence_ref"
+        ]
+      },
+      "authorization": [
+        "evidence:read"
+      ],
+      "approval": "normal evidence classification controls",
+      "risks": [
+        "source-content leakage",
+        "false confidence"
+      ],
+      "evidence_paths": [
+        "docs/evidence-networks/README.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.evidence.relation.propose",
+      "service": "ar-seat",
+      "caller": [
+        "authorized-seat-mcp-client"
+      ],
+      "type": "write",
+      "purpose": "Record provisional typed evidence relation without certifying its validity",
+      "input": {
+        "type": "object",
+        "properties": {
+          "source_ref": {
+            "type": "string"
+          },
+          "relation_type": {
+            "type": "string"
+          },
+          "target_ref": {
+            "type": "string"
+          },
+          "mission_id": {
+            "type": "string"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_ref",
+          "relation_type",
+          "target_ref",
+          "mission_id",
+          "idempotency_key"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "proposal_id": {
+            "type": "string"
+          },
+          "epistemic_status": {
+            "type": "string",
+            "enum": [
+              "provisional"
+            ]
+          },
+          "audit_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "epistemic_status"
+        ]
+      },
+      "authorization": [
+        "evidence:propose"
+      ],
+      "approval": "may create provisional proposal only; promotion requires independent review",
+      "risks": [
+        "fabricated relationships",
+        "untrusted source injection"
+      ],
+      "evidence_paths": [
+        "docs/evidence-networks/README.md",
+        "specifications/protocols/evidence-review.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.data.integrity.assess",
+      "service": "cdo-seat",
+      "caller": [
+        "ar-seat-mcp-client",
+        "authorized-seat-mcp-client"
+      ],
+      "type": "read",
+      "purpose": "Evaluate schema integrity and lineage references; not semantic truth",
+      "input": {
+        "type": "object",
+        "properties": {
+          "proposal_id": {
+            "type": "string"
+          },
+          "mission_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "proposal_id",
+          "mission_id"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "integrity_status": {
+            "type": "string"
+          },
+          "assessment_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "integrity_status"
+        ]
+      },
+      "authorization": [
+        "data:integrity:review"
+      ],
+      "approval": "assessor must be independent of prohibited self-review",
+      "risks": [
+        "integrity confused with truth"
+      ],
+      "evidence_paths": [
+        "docs/agent-organization/SEATS.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.knowledge.context.lookup",
+      "service": "cko-seat",
+      "caller": [
+        "ar-seat-mcp-client",
+        "authorized-seat-mcp-client"
+      ],
+      "type": "read",
+      "purpose": "Return authorized prior evidence-context references for a mission",
+      "input": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "mission_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "topic",
+          "mission_id"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "context_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "trace_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "context_refs"
+        ]
+      },
+      "authorization": [
+        "knowledge:read"
+      ],
+      "approval": "bounded by data classification and mission",
+      "risks": [
+        "data leakage",
+        "recall misconstrued as validation"
+      ],
+      "evidence_paths": [
+        "docs/institutional-memory/README.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.governance.proposal.submit",
+      "service": "coo-seat",
+      "caller": [
+        "ar-seat-mcp-client",
+        "authorized-seat-mcp-client"
+      ],
+      "type": "write",
+      "purpose": "Submit a governed improvement candidate for independent disposition",
+      "input": {
+        "type": "object",
+        "properties": {
+          "candidate_ref": {
+            "type": "string"
+          },
+          "mission_id": {
+            "type": "string"
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "candidate_ref",
+          "mission_id",
+          "idempotency_key"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "docket_ref": {
+            "type": "string"
+          },
+          "operation_status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "docket_ref",
+          "operation_status"
+        ]
+      },
+      "authorization": [
+        "governance:proposal:submit"
+      ],
+      "approval": "submission only; disposition is separate and cannot be self-granted",
+      "risks": [
+        "authority laundering",
+        "automatic adoption"
+      ],
+      "evidence_paths": [
+        "GOVERNANCE.md",
+        "docs/agent-organization/SEATS.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    },
+    {
+      "id": "nb.audit.finding.record",
+      "service": "audit-governor-service",
+      "caller": [
+        "authorized-audit-client"
+      ],
+      "type": "write",
+      "purpose": "Create attributable read-only audit observation in audit ledger; no repo modification",
+      "input": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "commit_sha": {
+            "type": "string"
+          },
+          "finding_type": {
+            "type": "string"
+          },
+          "evidence_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotency_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo",
+          "commit_sha",
+          "finding_type",
+          "idempotency_key"
+        ],
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "finding_ref": {
+            "type": "string"
+          },
+          "operation_status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "operation_status"
+        ]
+      },
+      "authorization": [
+        "audit:write"
+      ],
+      "approval": "separate approval for public issue creation or remediation",
+      "risks": [
+        "false-positive flood",
+        "confidential evidence in report"
+      ],
+      "evidence_paths": [
+        "CONTRIBUTING.md",
+        "STATUS.md"
+      ],
+      "status": "proposed",
+      "implemented_evidence": null,
+      "live_discovery_evidence": null,
+      "test_evidence": null
+    }
+  ]
+}
