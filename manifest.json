@@ -21,5 +21,14 @@
   "maintenance": {
     "auditable_from": "mcp branch",
     "promotion": "human-reviewed PR to main"
-  }
+  },
+  "research_inventories": [
+    "mcp/capability-inventory.json"
+  ],
+  "source_reviews": [
+    "mcp/architecture-audit-synthesis.md"
+  ],
+  "capability_candidate_count": 31,
+  "candidate_domains": 12,
+  "source_provenance_note": "User-supplied excerpt, incomplete bibliography and Seat 07 cutoff; architecture proposals only"
 }

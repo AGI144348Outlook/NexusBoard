@@ -41,3 +41,14 @@ Provide a dedicated research/design branch for the repository's MCP posture:
 7. Keep private topology/credentials and hidden customer data out of public `mcp` branch content.
 
 **Standard distinction:** MCP host/client/server are connection roles, not necessarily corporate authority roles or physical deployment boundaries. A constitutional seat may have a client and a server; a GitHub repository may define neither today.
+
+## Supplied comprehensive audit report — expanded candidate inventory
+
+The user-provided report has been incorporated as a **source synthesis, not an executed audit**:
+
+- [Architectural strata, nested boundaries and corrections](architecture-audit-synthesis.md)
+- [31 candidate capabilities across 12 domains](capability-matrix.md) and [machine-readable inventory](capability-inventory.json)
+- [Partial detailed seat profiles (01–07)](seat-profiles-excerpt.md)
+- [Legacy/modern MCP compatibility note](protocol-compatibility-2026.md)
+
+The supplied excerpt ends at Seat 07 and does not include its claimed 26-source bibliography. Do not merge proposed interfaces into the 11-tool registry or advertise them as callable until each name, schema, principal and authorization is reconciled and implementation evidence exists.
