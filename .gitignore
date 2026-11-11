@@ -1,0 +1,12 @@
+# Local research inputs: never publish raw source archives or credentials
+*.zip
+*.pdf
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+node_modules/
+__pycache__/
+.DS_Store
