@@ -1,0 +1,28 @@
+{
+  "_notice": "ILLUSTRATIVE APPLICATION BODY; identity strings in the body are NOT authentication",
+  "request_id": "example-request-001",
+  "caller_seat": "nb.seat.ar",
+  "mission_id": "example-mission-001",
+  "operation": "relationship.propose",
+  "purpose": "propose contextual evidence link",
+  "target_contexts": [
+    "conceptual",
+    "implementation"
+  ],
+  "source_refs": [
+    "example-source-version-a"
+  ],
+  "intended_effect": "proposal-only",
+  "proposed_relation": {
+    "subject_ref": "example-observation-1",
+    "relation_type": "supports",
+    "object_ref": "example-claim-1"
+  },
+  "versions": {
+    "mcp_protocol": "negotiated-by-transport",
+    "seat_charter": "proposed-0.1",
+    "evidence_model": "draft"
+  },
+  "idempotency_key": "example-idempotency-001",
+  "auth": "REQUIRED VIA TRANSPORT / BACKEND; NOT A USER-SUPPLIED JSON CLAIM"
+}

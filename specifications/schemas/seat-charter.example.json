@@ -1,0 +1,34 @@
+{
+  "_notice": "ILLUSTRATIVE ONLY; no live seat or endpoint is registered by this file",
+  "seat_id": "nb.seat.ar",
+  "office": "Chief Agent Resources Officer",
+  "charter_version": "proposed-0.1",
+  "service_identity_ref": "registered-authenticated-principal",
+  "endpoint_ref": "internal-service-reference-to-be-assigned",
+  "client_capabilities": [
+    "cdo.schema.registry.read",
+    "cko.memory.contexts.read",
+    "coo.proposal.disposition.read"
+  ],
+  "server_capabilities": [
+    "evidence.encounter.record",
+    "context.models.compare",
+    "relationship.propose",
+    "adaptation.candidate.submit"
+  ],
+  "resource_templates": [
+    "nexusboard://evidence/models/{model_id}",
+    "nexusboard://ar/proposals/{proposal_id}"
+  ],
+  "permissions": {
+    "provisional_relation_writes": "scope-and-approval-dependent",
+    "protected_operational_changes": false
+  },
+  "required_trace": [
+    "mission_id",
+    "authenticated_principal",
+    "policy_version",
+    "source_refs",
+    "timestamp"
+  ]
+}
