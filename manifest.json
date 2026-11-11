@@ -1,6 +1,6 @@
 {
   "$schema": "./mcp/schemas/repository-mcp-manifest.schema.json",
-  "manifest_version": "0.2.0",
+  "manifest_version": "0.3.0",
   "profile": "nexusboard-repository-mcp-audit",
   "repository": "AGI144348Outlook/NexusBoard",
   "branch": "mcp",
@@ -27,7 +27,8 @@
   ],
   "source_reviews": [
     "mcp/architecture-audit-synthesis.md",
-    "mcp/full-report-intake.md"
+    "mcp/full-report-intake.md",
+    "mcp/jurisdiction-intake.md"
   ],
   "capability_candidate_count": 31,
   "candidate_domains": 12,
@@ -40,5 +41,11 @@
   "seats_described": 20,
   "proposed_resource_uri_templates": 40,
   "threat_scenario_count": 8,
-  "enforcement_gate_count": 5
+  "enforcement_gate_count": 5,
+  "jurisdiction_matrix": "mcp/jurisdiction-matrix.json",
+  "jurisdiction_audit": "mcp/jurisdiction-boundary-audit.md",
+  "authorization_design": "mcp/authorization-flow.md",
+  "required_evidence_contract": "mcp/evidence-marker-contract.md",
+  "jurisdiction_seats": 20,
+  "jurisdiction_status": "design-source-derived; no live access enforcement verified"
 }

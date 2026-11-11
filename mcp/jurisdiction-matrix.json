@@ -1,0 +1,729 @@
+{
+  "schema_version": "0.1.0",
+  "profile": "NexusBoard twenty-seat jurisdiction evidence audit",
+  "source": {
+    "title": "NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit",
+    "kind": "owner supplied report in conversation",
+    "claimed_sources": 26,
+    "bibliography_provided": false,
+    "classification": "architectural source narrative; no live implementation proof"
+  },
+  "warnings": [
+    "Evidentiary markers are required *by the proposed audit design*; their actual presence has not been verified.",
+    "MCP capability names are proposed application interfaces, not standardized RPC methods or live tool listings.",
+    "Resource names given in this report are shorthand; separate URI template catalog remains proposed.",
+    "This document is not a penetration test, security attestation, code review, database inspection or CI run.",
+    "Seat 20 broad visibility requires authenticated scope and privacy boundaries; not unrestricted database roles.",
+    "No inference model is allowed to approve its own privilege escalation."
+  ],
+  "evaluation_states": [
+    "proposed",
+    "specified",
+    "code-located",
+    "statically-reviewed",
+    "live-observed",
+    "tested",
+    "independently-verified"
+  ],
+  "seats": [
+    {
+      "seat_id": "01",
+      "office": "Board Chair",
+      "domain": "Board Governance",
+      "jurisdiction": "committee governance",
+      "required_evidence_markers": [
+        "Committee decision ledgers",
+        "verified attendance and eligibility",
+        "charter versions",
+        "procedural issues and appeals"
+      ],
+      "jurisdiction_boundary": "May convene, record quorum and decisions; cannot deploy code, alter evidence or modify schemas",
+      "escalation_target": "CEO / Board",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "committee.docket.read",
+        "committee.hearing.convene"
+      ],
+      "proposed_context_resource_names": [
+        "committee.minutes.read",
+        "committee.decision.get"
+      ],
+      "proposed_client_dependencies": [
+        "03 COO",
+        "20 Internal Audit",
+        "02 CEO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "02",
+      "office": "CEO",
+      "domain": "Executive Direction",
+      "jurisdiction": "strategic direction",
+      "required_evidence_markers": [
+        "Executive resolutions",
+        "strategic rationale",
+        "delegated authority ledger",
+        "policy exceptions"
+      ],
+      "jurisdiction_boundary": "Founder-defined authority ceiling; cannot rewrite owner-controlled constitution or bypass CISO",
+      "escalation_target": "Founder",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "strategy.directive.issue",
+        "executive.decision.record"
+      ],
+      "proposed_context_resource_names": [
+        "constitution.read",
+        "executive.portfolio.read"
+      ],
+      "proposed_client_dependencies": [
+        "03 COO",
+        "04 CFO",
+        "10 CRO",
+        "07 CISO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "03",
+      "office": "COO",
+      "domain": "Operational Execution",
+      "jurisdiction": "mission and proposal dispatch",
+      "required_evidence_markers": [
+        "Sequential approval logs",
+        "committee consultations",
+        "workload constraints",
+        "mission checkpoints"
+      ],
+      "jurisdiction_boundary": "Cannot bypass CISO or CDO controls; constitutional and material legal/strategic changes escalate",
+      "escalation_target": "CEO / Board",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "operations.assignment.issue",
+        "proposal.disposition.record"
+      ],
+      "proposed_context_resource_names": [
+        "missions.dashboard.read",
+        "dependency.impact.read"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "19 R&D",
+        "13 CDO",
+        "04 CFO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "04",
+      "office": "CFO",
+      "domain": "Financial & Compute Economy",
+      "jurisdiction": "compute and financial budgets",
+      "required_evidence_markers": [
+        "Time-stamped provider tariffs",
+        "budget versions",
+        "quantitative cost models",
+        "transaction authorizations"
+      ],
+      "jurisdiction_boundary": "Cost savings cannot establish research truth or supersede security/compliance policy",
+      "escalation_target": "COO / CEO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "budget.envelope.evaluate",
+        "spend.authorization.record"
+      ],
+      "proposed_context_resource_names": [
+        "cost.center.read",
+        "forecast.scenario.read"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "05 CTO",
+        "03 COO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "05",
+      "office": "CTO",
+      "domain": "Technology & Engineering",
+      "jurisdiction": "implementation, deployment and technical standards",
+      "required_evidence_markers": [
+        "Architecture decision records",
+        "build logs",
+        "implementation references",
+        "deployment validation records"
+      ],
+      "jurisdiction_boundary": "Cannot change evidence meaning or business policy without competent review",
+      "escalation_target": "COO / CCO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "architecture.change.review",
+        "integration.plan.publish"
+      ],
+      "proposed_context_resource_names": [
+        "service.catalog.read",
+        "dependency.map.read"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "06 CIO",
+        "07 CISO",
+        "19 R&D",
+        "03 COO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "06",
+      "office": "CIO",
+      "domain": "Information Connectivity & Transport",
+      "jurisdiction": "service directory and network transport",
+      "required_evidence_markers": [
+        "Service principal manifests",
+        "versioned endpoint catalogs",
+        "network health/availability records"
+      ],
+      "jurisdiction_boundary": "Discovered/reachable endpoint does not grant execution authority",
+      "escalation_target": "CISO / CTO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "connection.route.evaluate",
+        "directory.service.register"
+      ],
+      "proposed_context_resource_names": [
+        "directory.resolve",
+        "availability.read"
+      ],
+      "proposed_client_dependencies": [
+        "07 CISO",
+        "13 CDO",
+        "05 CTO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "07",
+      "office": "CISO",
+      "domain": "Enterprise Security & Privilege Control",
+      "jurisdiction": "authentication and policy evaluation",
+      "required_evidence_markers": [
+        "Authenticated principal attestations",
+        "denial logs",
+        "key rotation",
+        "access revocation records"
+      ],
+      "jurisdiction_boundary": "No model-created privilege grants; untrusted headers/clientInfo do not prove identity",
+      "escalation_target": "CEO / Board",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "access.policy.evaluate",
+        "credential.scope.issue"
+      ],
+      "proposed_context_resource_names": [
+        "security.policy.read",
+        "principal.attestation.read"
+      ],
+      "proposed_client_dependencies": [
+        "03 COO",
+        "11 CCO",
+        "12 CLO",
+        "20 Internal Audit"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "08",
+      "office": "CARO / Agent Resources",
+      "domain": "Evidence Memory Networking & Resource Representation",
+      "jurisdiction": "evidence intake and provisional contextual proposals",
+      "required_evidence_markers": [
+        "Source provenance hashes",
+        "alternate context versions",
+        "unverified-claim state",
+        "improvement proposal records"
+      ],
+      "jurisdiction_boundary": "Required processing does not authorize adoption; cannot self-approve, deploy or self-grant access",
+      "escalation_target": "COO / CKO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "evidence.encounter.record",
+        "context.model.branch",
+        "relationship.propose",
+        "adaptation.candidate.submit"
+      ],
+      "proposed_context_resource_names": [
+        "evidence.view.read",
+        "relation.candidates.read",
+        "contextual.models.compare"
+      ],
+      "proposed_client_dependencies": [
+        "13 CDO",
+        "14 CKO",
+        "19 R&D",
+        "03 COO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "09",
+      "office": "CSO",
+      "domain": "Corporate Strategy",
+      "jurisdiction": "strategic alternatives and priorities",
+      "required_evidence_markers": [
+        "Scenario analyses",
+        "objective weight matrices",
+        "sensitivity analysis",
+        "uncertainty bounds"
+      ],
+      "jurisdiction_boundary": "Strategic advice is not a binding operational order",
+      "escalation_target": "CEO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "strategy.option.assess",
+        "priority.tradeoff.record"
+      ],
+      "proposed_context_resource_names": [
+        "opportunity.map.read",
+        "portfolio.constraints.read"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "04 CFO",
+        "03 COO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "10",
+      "office": "CRO",
+      "domain": "Enterprise Risk",
+      "jurisdiction": "systemic risk assessment",
+      "required_evidence_markers": [
+        "Threat-model assumptions",
+        "impact scores",
+        "uncertainty bounds",
+        "mitigation registry"
+      ],
+      "jurisdiction_boundary": "Cannot suppress valid evidence; exceptions require recorded escalation",
+      "escalation_target": "COO / CEO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "risk.assessment.issue",
+        "risk.exception.recommend"
+      ],
+      "proposed_context_resource_names": [
+        "risk.register.read",
+        "dependency.exposure.read"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "07 CISO",
+        "05 CTO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "11",
+      "office": "CCO",
+      "domain": "Operational & Regulatory Compliance",
+      "jurisdiction": "constitutional and contractual conformance",
+      "required_evidence_markers": [
+        "Policy IDs and effective dates",
+        "operation logs",
+        "discrepancy/violation notices"
+      ],
+      "jurisdiction_boundary": "Cannot retroactively forge or unilaterally rewrite governing contracts",
+      "escalation_target": "CEO / Legal",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "policy.conformance.evaluate",
+        "violation.notice.issue"
+      ],
+      "proposed_context_resource_names": [
+        "charter.versions.read",
+        "policy.decisions.read"
+      ],
+      "proposed_client_dependencies": [
+        "03 COO",
+        "07 CISO",
+        "12 CLO",
+        "20 Internal Audit"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "12",
+      "office": "CLO",
+      "domain": "Legal & Intellectual Property",
+      "jurisdiction": "rights, privacy, licensing and retention",
+      "required_evidence_markers": [
+        "Rights ownership evidence",
+        "retention schedules",
+        "consent records",
+        "publication clearances"
+      ],
+      "jurisdiction_boundary": "AI-generated legal advice is advisory; formal commitments need authorized humans",
+      "escalation_target": "Founder / CEO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "rights.assessment.request",
+        "retention.disposition.propose"
+      ],
+      "proposed_context_resource_names": [
+        "licenses.read",
+        "consent.provenance.read"
+      ],
+      "proposed_client_dependencies": [
+        "13 CDO",
+        "17 CMO",
+        "03 COO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "13",
+      "office": "CDO",
+      "domain": "Data Governance & Persistence Integrity",
+      "jurisdiction": "schemas, constraints and physical data integrity",
+      "required_evidence_markers": [
+        "Migration proposals",
+        "constraint and FK checks",
+        "identity mappings",
+        "RLS/grant reviews"
+      ],
+      "jurisdiction_boundary": "Enforces structure rather than contextual semantic meaning",
+      "escalation_target": "CTO / CISO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "schema.impact.assess",
+        "record.integrity.check"
+      ],
+      "proposed_context_resource_names": [
+        "schema.registry.read",
+        "evidence.index.lookup"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "06 CIO",
+        "07 CISO",
+        "05 CTO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "14",
+      "office": "CKO",
+      "domain": "Knowledge Continuity & Archival Retrieval",
+      "jurisdiction": "retrieval and archive coverage",
+      "required_evidence_markers": [
+        "Coverage-gap analyses",
+        "retrieval traces",
+        "staleness warnings",
+        "precision/quality metrics"
+      ],
+      "jurisdiction_boundary": "Retrieval relevance does not prove truth or override AR relation assessments",
+      "escalation_target": "AR / CDO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "knowledge.coverage.review",
+        "retrieval.quality.assess"
+      ],
+      "proposed_context_resource_names": [
+        "memory.catalog.read",
+        "source.lineage.read"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "13 CDO",
+        "20 Internal Audit",
+        "03 COO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "15",
+      "office": "CPO",
+      "domain": "Product Management",
+      "jurisdiction": "requirements and release readiness",
+      "required_evidence_markers": [
+        "Approved feature charters",
+        "user stories",
+        "delivery verification",
+        "release attestations"
+      ],
+      "jurisdiction_boundary": "Product ambition cannot bypass security, privacy or data-integrity constraints",
+      "escalation_target": "COO / CTO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "product.requirement.propose",
+        "release.readiness.assess"
+      ],
+      "proposed_context_resource_names": [
+        "product.backlog.read",
+        "capability.status.read"
+      ],
+      "proposed_client_dependencies": [
+        "18 CCuO",
+        "05 CTO",
+        "17 CMO",
+        "03 COO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "16",
+      "office": "CRevO",
+      "domain": "Commercial & Monetization",
+      "jurisdiction": "offer revenue assessments and terms",
+      "required_evidence_markers": [
+        "Advertised payout conditions",
+        "subscription costs",
+        "net payout formulas",
+        "revenue evidence trail"
+      ],
+      "jurisdiction_boundary": "Cannot guarantee earnings or approve prohibited referral practices without evidence and compliance",
+      "escalation_target": "CFO / COO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "revenue.case.evaluate",
+        "offer.terms.verify"
+      ],
+      "proposed_context_resource_names": [
+        "commercial.pipeline.read",
+        "offer.observations.read"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "04 CFO",
+        "12 CLO",
+        "17 CMO",
+        "03 COO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "17",
+      "office": "CMO",
+      "domain": "External Communications",
+      "jurisdiction": "publication planning and claims review",
+      "required_evidence_markers": [
+        "Approved publication drafts",
+        "affiliate disclosures",
+        "citations",
+        "edition release logs"
+      ],
+      "jurisdiction_boundary": "Cannot publish unverified payouts/claims; publication needs appropriate approval",
+      "escalation_target": "COO / CLO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "publication.plan.propose",
+        "claim.disclosure.review"
+      ],
+      "proposed_context_resource_names": [
+        "audience.research.read",
+        "approved.claims.read"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "12 CLO",
+        "15 CPO",
+        "03 COO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "18",
+      "office": "CCuO",
+      "domain": "User Experience & Advocacy",
+      "jurisdiction": "user feedback and accessibility",
+      "required_evidence_markers": [
+        "Anonymized feedback",
+        "accessibility reports",
+        "consent records",
+        "severity rankings"
+      ],
+      "jurisdiction_boundary": "Feedback is evidence, not consent to change configuration or access private data",
+      "escalation_target": "CPO / CISO",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "user.requirement.record",
+        "experience.impact.assess"
+      ],
+      "proposed_context_resource_names": [
+        "feedback.evidence.read",
+        "accessibility.report.read"
+      ],
+      "proposed_client_dependencies": [
+        "08 AR",
+        "15 CPO",
+        "05 CTO",
+        "06 CIO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "19",
+      "office": "VP R&D",
+      "domain": "Research & Development",
+      "jurisdiction": "experimental method and reproducibility",
+      "required_evidence_markers": [
+        "Preregistered methods",
+        "repository pre-test threads",
+        "raw outcomes",
+        "failures",
+        "limitations",
+        "reproducibility review"
+      ],
+      "jurisdiction_boundary": "No repository test/diagnostic/CI without pre-test GitHub issue or discussion; cannot self-approve production adoption",
+      "escalation_target": "COO / Audit",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "research.question.register",
+        "evaluation.plan.submit",
+        "result.report"
+      ],
+      "proposed_context_resource_names": [
+        "protocols.read",
+        "prior.findings.read"
+      ],
+      "proposed_client_dependencies": [
+        "03 COO",
+        "08 AR",
+        "05 CTO",
+        "20 Internal Audit"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    },
+    {
+      "seat_id": "20",
+      "office": "Internal Audit",
+      "domain": "Independent Assurance",
+      "jurisdiction": "independent governance and execution review",
+      "required_evidence_markers": [
+        "Protected/tamper-evident logs where implemented",
+        "findings",
+        "management responses",
+        "remediation verification records"
+      ],
+      "jurisdiction_boundary": "Cannot implement, approve or execute audited processes; broad access must remain authenticated, privacy-limited and logged",
+      "escalation_target": "Board Chair",
+      "proposed_mcp_role": "server for declared seat capabilities; client for authorized dependencies",
+      "proposed_server_tools": [
+        "audit.scope.open",
+        "finding.issue",
+        "evidence.chain.review"
+      ],
+      "proposed_context_resource_names": [
+        "audit.log.read",
+        "decisions.history.read"
+      ],
+      "proposed_client_dependencies": [
+        "01 Board Chair",
+        "02 CEO"
+      ],
+      "status": "proposed",
+      "declared_implementation_paths": [],
+      "verified_endpoint_refs": [],
+      "observed_audit_evidence": [],
+      "tested": false,
+      "source": "User-supplied NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit; no bibliography supplied"
+    }
+  ]
+}

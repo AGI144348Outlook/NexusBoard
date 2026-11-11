@@ -62,3 +62,14 @@ The owner has supplied all twenty seat profiles; the claimed 26-source bibliogra
 - [Complete report provenance and corrections](full-report-intake.md).
 
 The full report **does not include a 26-source bibliography**. These additional proposals are not automatically merged with the original 11-tool list or 31-row domain inventory, because names, aliases, schemas and authority require reconciliation.
+
+## Seat-level jurisdiction audit (new source report)
+
+The 2026-11-11 *NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit* adds formal evidence requirements and escalation for every office:
+
+- [Twenty-seat authority/evidence matrix](jurisdiction-boundary-audit.md) and [machine-readable jurisdiction declarations](jurisdiction-matrix.json).
+- [Server-to-database authorization pathway](authorization-flow.md).
+- [Evidence-marker contract for hourly audits](evidence-marker-contract.md).
+- [New report provenance/limitations](jurisdiction-intake.md).
+
+These are **auditor requirements**, not claims that twenty seat servers or specified controls are implemented. Retain the original [twenty-seat capability profiles](seat-profiles.md) and [31-domain candidate catalog](capability-inventory.json) separately for cross-referencing.

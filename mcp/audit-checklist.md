@@ -54,3 +54,9 @@ Review the eight proposed failure modes in [security-risks.md](security-risks.md
 ## I. Resource and office coverage
 
 Compare the [20-seat inventory](seat-profiles.md) and [proposed resource URI templates](resource-uris.md) with actual server features and resolvable resources, where evidence is available. Do not assume `nexusboard://` is registered or that all seats are separate physical servers. Distinguish SQL, constitutional and evidentiary role layers per [role-boundaries.md](role-boundaries.md).
+
+## J. Evidence-backed jurisdiction checks (twenty seats)
+
+Cross-reference the [jurisdiction matrix](jurisdiction-matrix.json) with [role assignments](role-assignments.md), existing code/config and the [evidence-marker contract](evidence-marker-contract.md). For each seat record: declared mission, proposed client/server tools/resources, code-located responsibilities, observed or inaccessible approval and provenance artifacts, forbidden actions, escalation owner, and independent review path. The result must distinguish **documentary consistency** from **verified deterministic enforcement**. Sensitive logs are not copied into public reports.
+
+For future active authorization or RLS tests, publish a pre-test record **before** execution in the repository under test and report actual findings in the same thread. Static read-only reviews do not perform those tests.
