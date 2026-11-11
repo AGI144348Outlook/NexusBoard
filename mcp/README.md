@@ -48,7 +48,17 @@ The user-provided report has been incorporated as a **source synthesis, not an e
 
 - [Architectural strata, nested boundaries and corrections](architecture-audit-synthesis.md)
 - [31 candidate capabilities across 12 domains](capability-matrix.md) and [machine-readable inventory](capability-inventory.json)
-- [Partial detailed seat profiles (01–07)](seat-profiles-excerpt.md)
+- [Historical partial detailed seat profiles (01–07)](seat-profiles-excerpt.md)
 - [Legacy/modern MCP compatibility note](protocol-compatibility-2026.md)
 
-The supplied excerpt ends at Seat 07 and does not include its claimed 26-source bibliography. Do not merge proposed interfaces into the 11-tool registry or advertise them as callable until each name, schema, principal and authorization is reconciled and implementation evidence exists.
+The owner has supplied all twenty seat profiles; the claimed 26-source bibliography is still unavailable. Do not merge proposed interfaces into the 11-tool registry or advertise them as callable until each name, schema, principal and authorization is reconciled and implementation evidence exists.
+
+## Full owner-supplied report (2026-11-11)
+
+- [Full twenty-seat MCP profile](seat-profiles.md) — duties, calls, resources, dependencies and separation of duties.
+- [Forty candidate context resource URIs](resource-uris.md) — proposed, not deployed.
+- [Eight threat scenarios](security-risks.md) and [five enforcement gates](enforcement-gates.md) — specified mitigations, not tested controls.
+- [Three role layers](role-boundaries.md) — SQL, constitutional, and evidentiary.
+- [Complete report provenance and corrections](full-report-intake.md).
+
+The full report **does not include a 26-source bibliography**. These additional proposals are not automatically merged with the original 11-tool list or 31-row domain inventory, because names, aliases, schemas and authority require reconciliation.

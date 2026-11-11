@@ -1,15 +1,15 @@
 {
   "title": "NexusBoard 12-domain capability inventory — user report synthesis",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "classification": "unverified proposals",
   "count": 31,
   "source": {
-    "kind": "user-provided report excerpt",
+    "kind": "complete user-supplied report text",
     "label": "Comprehensive Audit Report: NexusBoard MCP Capabilities, Tool Inventories, and Architectural Governance",
     "attributed_sources_claim": 26,
     "bibliography_received": false,
-    "full_report_received": false,
-    "received_extent": "text ends during Seat 07 detailed profile",
+    "full_report_received": true,
+    "received_extent": "all twenty detailed seat profiles and all seven numbered sections ending in five deterministic security gates",
     "source_classification": "mixed explicitly described / structurally inferred; item-level provenance not supplied"
   },
   "warnings": [
@@ -17,7 +17,9 @@
     "Resource capabilities are not equivalent to callable tools.",
     "No server endpoints, tool calls, code paths or experiments were verified.",
     "Credential issuance, financial authorization, directives and binding findings require formal authority and independent controls.",
-    "Proposed names may overlap with earlier mcp/tool-proposals.json and require semantic reconciliation before promotion."
+    "Proposed names may overlap with earlier mcp/tool-proposals.json and require semantic reconciliation before promotion.",
+    "The 31-row capability matrix is not the complete seat-facing tool list; other proposed tool names are in mcp/seat-profiles.md.",
+    "Claim of 26 sources is not supported by an included bibliography."
   ],
   "domain_counts": {
     "Discovery & Directory": 3,
@@ -561,5 +563,12 @@
       "authorization_enforcement": "server-side and at downstream callee; not inferred from tools/list",
       "candidate_only": true
     }
-  ]
+  ],
+  "supplementary_catalogs": {
+    "seat_profiles": "mcp/seat-profiles.md",
+    "resources": "mcp/resource-uris.md",
+    "threats": "mcp/security-risks.md",
+    "gates": "mcp/enforcement-gates.md",
+    "provenance": "mcp/full-report-intake.md"
+  }
 }

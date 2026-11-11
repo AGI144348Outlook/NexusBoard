@@ -23,3 +23,7 @@ Each running service must eventually declare: service ID, role, location/transpo
 ## Authorization
 
 Authenticate each request at transport/identity layer; **do not** rely on self-reported `caller_seat` strings. Re-check authorization at the callee. Sensitive actions require human review. See [protocol profile](protocol-profile.md), [interoffice design](../specifications/protocols/constitutional-interoffice.md).
+
+## All twenty offices from completed report
+
+[Full client/server proposal matrix](seat-profiles.md): each seat may serve its own bounded capabilities and act as a client to specified peer services; no office acquires execution privilege through discovery. [Database, seat, and evidentiary role definitions](role-boundaries.md) must remain separate.

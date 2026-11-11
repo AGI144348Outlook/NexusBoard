@@ -1,6 +1,6 @@
 # Report synthesis: protocol strata, four boundaries and governance
 
-**Status:** architectural review of a **user-supplied report excerpt**, *not* an executed runtime or implementation audit. The excerpt names 26 sources without supplying their individual citations; it ends during the detailed Seat 07 profile. Assertions beyond that cutoff must be sourced separately to the existing 25-source journal rather than falsely attributed to the excerpt.
+**Status:** architectural synthesis of the **full user-supplied report**, not an executed implementation or MCP runtime audit. The original excerpt ended at Seat 07; the complete continuation through Seat 20, proposed resource templates, role layers, eight risks, and five gates is now separately documented. The report's heading claims 26 sources but does **not** supply their bibliography. Do not conflate that claim with the existing 25-source journal.
 
 ## Protocol strata
 
@@ -34,4 +34,13 @@ The report's designation as a 'comprehensive audit' is a **title**, not independ
 
 ## Crosslinks
 
-[Capability inventory](capability-inventory.json) · [Matrix](capability-matrix.md) · [Seat profile additions](seat-profiles-excerpt.md) · [Protocol profile](protocol-profile.md) · [Constitution](../GOVERNANCE.md) · [Current source catalog](../docs/SOURCE_CATALOG.md).
+[Capability inventory](capability-inventory.json) · [Matrix](capability-matrix.md) · [Full seat profiles](seat-profiles.md) · [Protocol profile](protocol-profile.md) · [Constitution](../GOVERNANCE.md) · [Current source catalog](../docs/SOURCE_CATALOG.md).
+
+## Complete report additions
+
+- [Seats 01–20](seat-profiles.md)
+- [Resource templates](resource-uris.md)
+- [Three role meanings](role-boundaries.md)
+- [Threat scenarios](security-risks.md)
+- [Target enforcement gates](enforcement-gates.md)
+- [Provenance and editorial corrections](full-report-intake.md)

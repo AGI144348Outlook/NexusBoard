@@ -46,3 +46,11 @@ Use [audit report template](audit-report-template.md) with evidence, severity, c
 Live discovery, HTTP/stdio probes, diagnostics, tests, benchmarking and CI **must not** begin until a pre-test Issue/Discussion is published **in the repository being tested**. Include discussion with Timothy, problem, hypothesis, solution, exact method, expected results and disconfirming criteria. After actual execution, follow up **in the same thread**, separating observations and interpretations with evidence and limitations. If publishing is blocked, report it and do not test.
 
 The `mcp` branch is a **proposed capability registry**, not an activation signal.
+
+## H. Security gates from complete report
+
+Review the eight proposed failure modes in [security-risks.md](security-risks.md): gateway trust, authority laundering, full mesh, role self-promotion, success/truth confusion, AR self-adoption, prompt impersonation, owner/BYPASSRLS leak. Compare implementation evidence against [five enforcement gates](enforcement-gates.md), treating missing code evidence as **unknown**, not proved unsafe. Record each observation, risk interpretation, privilege/tenant sensitivity and authorization required for any future dynamic test.
+
+## I. Resource and office coverage
+
+Compare the [20-seat inventory](seat-profiles.md) and [proposed resource URI templates](resource-uris.md) with actual server features and resolvable resources, where evidence is available. Do not assume `nexusboard://` is registered or that all seats are separate physical servers. Distinguish SQL, constitutional and evidentiary role layers per [role-boundaries.md](role-boundaries.md).

@@ -1,6 +1,6 @@
 {
   "$schema": "./mcp/schemas/repository-mcp-manifest.schema.json",
-  "manifest_version": "0.1.0",
+  "manifest_version": "0.2.0",
   "profile": "nexusboard-repository-mcp-audit",
   "repository": "AGI144348Outlook/NexusBoard",
   "branch": "mcp",
@@ -26,9 +26,19 @@
     "mcp/capability-inventory.json"
   ],
   "source_reviews": [
-    "mcp/architecture-audit-synthesis.md"
+    "mcp/architecture-audit-synthesis.md",
+    "mcp/full-report-intake.md"
   ],
   "capability_candidate_count": 31,
   "candidate_domains": 12,
-  "source_provenance_note": "User-supplied excerpt, incomplete bibliography and Seat 07 cutoff; architecture proposals only"
+  "source_provenance_note": "Complete owner-supplied report text received for all Seats 01–20; claimed 26-source bibliography not included. All capabilities are design proposals.",
+  "seat_profiles": "mcp/seat-profiles.md",
+  "resource_templates": "mcp/resource-uris.md",
+  "threat_scenarios": "mcp/security-risks.md",
+  "enforcement_gates": "mcp/enforcement-gates.md",
+  "role_boundaries": "mcp/role-boundaries.md",
+  "seats_described": 20,
+  "proposed_resource_uri_templates": 40,
+  "threat_scenario_count": 8,
+  "enforcement_gate_count": 5
 }
