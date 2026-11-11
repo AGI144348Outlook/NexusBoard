@@ -73,3 +73,13 @@ The 2026-11-11 *NexusBoard 20 Corporate Seats & Jurisdiction Boundary Audit* add
 - [New report provenance/limitations](jurisdiction-intake.md).
 
 These are **auditor requirements**, not claims that twenty seat servers or specified controls are implemented. Retain the original [twenty-seat capability profiles](seat-profiles.md) and [31-domain candidate catalog](capability-inventory.json) separately for cross-referencing.
+
+## Federation security: new source-derived review
+
+- [Federation trust-boundary review](federation-security-review.md) — gateway, delegation, full mesh and verification caveats.
+- [Machine-readable thirteen-control register](federation-control-register.json) — each control marked **specified, not verified**.
+- [Neon/RLS contextual authorization](rls-authorization-design.md), [Durable Object async reentrancy](durable-object-concurrency.md), and [PROV-O versus integrity](provenance-integrity.md).
+- [Operator handoff security](operator-handoff-security.md) and [approval/audit query semantics](audit-query-design.md).
+- [New report provenance and corrections](federation-security-intake.md).
+
+The report describes **design objectives**, not observed controls. Neither the tools nor any production services were activated or tested by this update.

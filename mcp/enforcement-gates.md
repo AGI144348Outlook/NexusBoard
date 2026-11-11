@@ -25,3 +25,14 @@ For each gate specify component owner, code path, configured principal, version,
 ## Testing policy
 
 Before running *any* GitHub repository diagnostic, benchmark, tests, endpoint probes or CI, publish the required public-safe Issue/Discussion in the repository under test. After execution report actual results in that same thread. If publishing is unavailable, stop and report. See [CONTRIBUTING.md](../CONTRIBUTING.md).
+
+## Additional technical guardrails from federation security review
+
+- Postgres custom session variables are untrusted unless established through authenticated, narrow server-side transaction context; role/owner/BYPASSRLS exceptions and policy definitions matter.
+- Cloudflare Durable Object single-threaded execution permits asynchronous interleaving; atomicity requires appropriate storage/concurrency design.
+- W3C PROV-O provenance descriptions and content hashes are not automatically immutable or tamper-evident; use independent log protection.
+- Check both the origin's authorization and the acting seat's jurisdiction on each interoffice hop; do not simply adopt the upstream gateway's privilege.
+- Operator leases are application-level and can differ from separately authorized scheduled cloud service principals.
+- Independent Audit findings do not themselves activate unreviewed production circuit breakers.
+
+See [federation security review](federation-security-review.md) and the [thirteen-control register](federation-control-register.json). **Enforcement status: specified, not verified.**

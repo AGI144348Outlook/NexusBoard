@@ -60,3 +60,9 @@ Compare the [20-seat inventory](seat-profiles.md) and [proposed resource URI tem
 Cross-reference the [jurisdiction matrix](jurisdiction-matrix.json) with [role assignments](role-assignments.md), existing code/config and the [evidence-marker contract](evidence-marker-contract.md). For each seat record: declared mission, proposed client/server tools/resources, code-located responsibilities, observed or inaccessible approval and provenance artifacts, forbidden actions, escalation owner, and independent review path. The result must distinguish **documentary consistency** from **verified deterministic enforcement**. Sensitive logs are not copied into public reports.
 
 For future active authorization or RLS tests, publish a pre-test record **before** execution in the repository under test and report actual findings in the same thread. Static read-only reviews do not perform those tests.
+
+## K. Federation-resilience and proof-of-enforcement checks
+
+Inspect source/config **without executing it** for the thirteen requirements in [federation-control-register.json](federation-control-register.json). Distinguish upstream gateway checks from independently enforced callee authorization; evaluate original-delegation preservation, per-tool allowlists, SQL principal/RLS owner limitations, unsafe custom `SET LOCAL` reliance, async Durable Object reentrancy, operator lease expiry, idempotency, review provenance, true tamper resistance, and authorized containment. See [federation-security-review.md](federation-security-review.md).
+
+**Never mark a security gate 'implemented/enforced' from prose alone.** An unavailable code path or private live log means not inspectable/unknown. To verify with live endpoint, SQL, integration, diagnostic or CI actions, publish the GitHub pre-test Issue/Discussion **before** execution in the repository under test and report actual results in that same thread. No tests run in the static audit.

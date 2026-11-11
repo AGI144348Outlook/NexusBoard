@@ -1,6 +1,6 @@
 {
   "$schema": "./mcp/schemas/repository-mcp-manifest.schema.json",
-  "manifest_version": "0.3.0",
+  "manifest_version": "0.4.0",
   "profile": "nexusboard-repository-mcp-audit",
   "repository": "AGI144348Outlook/NexusBoard",
   "branch": "mcp",
@@ -28,7 +28,8 @@
   "source_reviews": [
     "mcp/architecture-audit-synthesis.md",
     "mcp/full-report-intake.md",
-    "mcp/jurisdiction-intake.md"
+    "mcp/jurisdiction-intake.md",
+    "mcp/federation-security-intake.md"
   ],
   "capability_candidate_count": 31,
   "candidate_domains": 12,
@@ -47,5 +48,14 @@
   "authorization_design": "mcp/authorization-flow.md",
   "required_evidence_contract": "mcp/evidence-marker-contract.md",
   "jurisdiction_seats": 20,
-  "jurisdiction_status": "design-source-derived; no live access enforcement verified"
+  "jurisdiction_status": "design-source-derived; no live access enforcement verified",
+  "federation_security_review": "mcp/federation-security-review.md",
+  "federation_control_register": "mcp/federation-control-register.json",
+  "federation_control_count": 13,
+  "federation_control_status": "specified_not_verified",
+  "operator_security_design": "mcp/operator-handoff-security.md",
+  "database_security_design": "mcp/rls-authorization-design.md",
+  "provenance_security_design": "mcp/provenance-integrity.md",
+  "runtime_concurrency_design": "mcp/durable-object-concurrency.md",
+  "audit_query_design": "mcp/audit-query-design.md"
 }

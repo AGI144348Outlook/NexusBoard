@@ -39,3 +39,7 @@
 `proposed_control` → `located_in_code` → `statically_reviewed` → `authorized_test_executed` → `independently_verified`. A mitigation should not be labeled 'enforced' merely because it is specified.
 
 See [enforcement gates](enforcement-gates.md), [repository audit checklist](audit-checklist.md), [governance](../GOVERNANCE.md).
+
+## Federation threat-model expansion
+
+The subsequent [federation security review](federation-security-review.md) adds evidence requirements for each existing risk and identifies technical gaps in **PostgreSQL custom GUC-based auth**, **Durable Object async interleaving**, **PROV-O immutability assumptions** and **unauthorized incident-response automation**. The [control register](federation-control-register.json) contains corresponding checks; none is labeled verified.

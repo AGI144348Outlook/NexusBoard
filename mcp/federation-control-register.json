@@ -1,0 +1,229 @@
+{
+  "schema_version": "0.1.0",
+  "classification": "source-derived proposed security-control audit register",
+  "review_scope": "conceptual NexusBoard MCP architecture; no live security audit",
+  "source_title": "NexusBoard Architectural Security Audit: Federation Resilience, Identity Boundary Enforcement, and Provenance Memory",
+  "claimed_sources": 26,
+  "bibliography_received": false,
+  "statuses": [
+    "proposed",
+    "specified_not_verified",
+    "code_located",
+    "statically_reviewed",
+    "live_observed",
+    "tested",
+    "independently_verified"
+  ],
+  "controls": [
+    {
+      "control_id": "FS-01",
+      "slug": "gateway-callee-authz",
+      "owner": "CISO/CIO/seat owner",
+      "requirement": "Every receiving office independently authenticates and authorizes delegated call",
+      "evidence_required": "Gateway and seat auth middleware; denial evidence; policy versions",
+      "challenging_observation": "gateway-only policy or child accepting arbitrary caller_seat",
+      "threat_refs": [
+        "R-01",
+        "R-07"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-02",
+      "slug": "origin-delegation-chain",
+      "owner": "CISO/COO",
+      "requirement": "No authority laundering via executive gateway",
+      "evidence_required": "Signed or otherwise verified delegation and scope chain; policy intersection and refusal logs",
+      "challenging_observation": "privilege amplification after forward",
+      "threat_refs": [
+        "R-02"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-03",
+      "slug": "peer-tool-allowlist",
+      "owner": "CIO/CISO",
+      "requirement": "Allowed peer edges are per-capability/mission, not full mesh",
+      "evidence_required": "Versioned allowlists; deny-by-default routes; actual service registry",
+      "challenging_observation": "unrestricted low-trust seat access",
+      "threat_refs": [
+        "R-03"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-04",
+      "slug": "separate-role-promotion",
+      "owner": "CCO/CISO/Owner",
+      "requirement": "No proposer self-grants roles or SQL privileges",
+      "evidence_required": "Protected admin provisioning; independent approval; no runtime admin creds",
+      "challenging_observation": "self-role write creates SQL privilege",
+      "threat_refs": [
+        "R-04"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-05",
+      "slug": "database-grants-rls",
+      "owner": "CDO/CISO",
+      "requirement": "Effective least-privilege and row policy checks independent of model",
+      "evidence_required": "Actual grants, RLS predicates, owner/BYPASSRLS review, safe transaction context",
+      "challenging_observation": "owner credential in Agent, spoofable app settings as sole auth",
+      "threat_refs": [
+        "R-08"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-06",
+      "slug": "actor-concurrency",
+      "owner": "CTO/Agent runtime owner",
+      "requirement": "Async interleaving and cross-seat updates remain safe",
+      "evidence_required": "Atomic state transitions, transaction design, idempotency and locking",
+      "challenging_observation": "concurrent task losses or inconsistent checkpoints",
+      "threat_refs": [
+        "R-01"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-07",
+      "slug": "audit-log-protection",
+      "owner": "CDO/Internal Audit",
+      "requirement": "Provenance and audit trace are protected and independently reviewable",
+      "evidence_required": "Write/read separation, append-only policies, external integrity anchor and retention design",
+      "challenging_observation": "logs deletable without independent trace",
+      "threat_refs": [
+        "R-05"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-08",
+      "slug": "prov-ontology-mapping",
+      "owner": "CKO/CDO/AR",
+      "requirement": "Entity/Activity/Agent and derivations are attributable but not overclaimed",
+      "evidence_required": "Explicit schema mapping, actual source hash rules and provenance bundles",
+      "challenging_observation": "PROV-O labeling treated as proof of immutability",
+      "threat_refs": [
+        "R-05"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-09",
+      "slug": "operator-lease-handoff",
+      "owner": "CISO/COO",
+      "requirement": "Revocable leases and machine mandates preserve mission continuity",
+      "evidence_required": "Credential issuer/audience/scope/expiry, versioned checkpoint, job fencing",
+      "challenging_observation": "stale lease accepted or duplicate external effect",
+      "threat_refs": [
+        "R-02"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-10",
+      "slug": "approval-validity",
+      "owner": "COO/CCO/Board",
+      "requirement": "Accepted relations and protected changes require competent, version-correct disposition",
+      "evidence_required": "Authenticated decision, approval path, conflict and revocation handling",
+      "challenging_observation": "accepted record only has unsigned/invalid approval ID",
+      "threat_refs": [
+        "R-04",
+        "R-06"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-11",
+      "slug": "audit-separation",
+      "owner": "Internal Audit/Board",
+      "requirement": "Independent examiner cannot self-implement its remediation",
+      "evidence_required": "Read-only scoped principal, immutable evidence refs, review trail",
+      "challenging_observation": "auditor shares production write authority",
+      "threat_refs": [
+        "R-06"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-12",
+      "slug": "containment-governance",
+      "owner": "CISO/CRO/Owner",
+      "requirement": "Alerts and circuit breakers are authorized and false-positive-resilient",
+      "evidence_required": "Approved triggers, impact limits, rollback, incident reports and consent",
+      "challenging_observation": "model suspicion auto-disables production seat",
+      "threat_refs": [
+        "R-02"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    },
+    {
+      "control_id": "FS-13",
+      "slug": "status-separation",
+      "owner": "AR/R&D/Audit",
+      "requirement": "Tool success never alone establishes factual approval or outcome",
+      "evidence_required": "Distinct operation/epistemic/disposition/outcome status records",
+      "challenging_observation": "HTTP 200 promotes knowledge truth or payout",
+      "threat_refs": [
+        "R-05"
+      ],
+      "status": "specified_not_verified",
+      "code_evidence": [],
+      "live_evidence": [],
+      "test_evidence": [],
+      "source": "owner-provided security report plus cited technical references"
+    }
+  ]
+}
