@@ -83,3 +83,7 @@ These are **auditor requirements**, not claims that twenty seat servers or speci
 - [New report provenance and corrections](federation-security-intake.md).
 
 The report describes **design objectives**, not observed controls. Neither the tools nor any production services were activated or tested by this update.
+
+## Neon contextual cards and evidence-network prototype (isolated)
+
+The [two-system Neon card/evidence setup](neon/README.md) provides additive `card_protocol` and `evidence_net` schemas, scoped MCP contracts, parameterized SQL adapters, and a non-deployed RPC core. **No dictionary is integrated into NexusBoard**, and neither stored cards nor authority-stamp references grant permission to execute. These are development-branch artifacts, not production federation enforcement.
