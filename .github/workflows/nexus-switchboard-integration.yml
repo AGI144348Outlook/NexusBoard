@@ -1,0 +1,29 @@
+name: NexusBoard NX-SB-001 Cloudflare DO / Neon Switchboard checks
+on:
+  push:
+    branches:
+      - feature/system-entity-switchboard-neon-opendiagram
+    paths:
+      - "integrations/system-entity-switchboard/**"
+      - ".github/workflows/nexus-switchboard-integration.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: integrations/system-entity-switchboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install worker development dependencies (never deploy)
+        run: npm install --no-audit --no-fund
+      - name: Verify preregistered pure contract and evidence tests
+        run: npm test
+      - name: Verify Worker and Durable Object Cloudflare bundling without deployment
+        run: npm run build:check
