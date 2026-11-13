@@ -10,6 +10,7 @@ interface Env {
   SYSTEM_ENTITY: DurableObjectNamespace<SystemEntity>;
   CORPORATE_AGENT: DurableObjectNamespace<CorporateAgent>;
   NEXUS_DATABASE_URL: string;
+  ECHO_DATABASE_URL?: string; // Separate Echo lexicon Neon backend; never implicit corporate fallback
   NEXUS_OPERATOR_TOKEN: string;
   NEXUS_ENTITY_ID: string;
   NEXUS_ALLOWED_ORIGINS?: string;
@@ -21,12 +22,19 @@ function json(data: unknown, status=200): Response {
       "x-content-type-options":"nosniff"},
   });
 }
-function sqlClient(env:Env) {
-  if (!env.NEXUS_DATABASE_URL) throw new Error("Neon backend not configured");
-  return neon(env.NEXUS_DATABASE_URL);
+type MemoryDomain="corporate"|"echo";
+function memoryDomain(value:unknown):MemoryDomain {
+  if(value===undefined||value===null||value==="corporate")return "corporate";
+  if(value==="echo")return "echo";
+  throw new Error("Invalid memory domain");
 }
-async function query(env:Env, statement:string, values:unknown[]=[]):Promise<Row[]> {
-  const sql=sqlClient(env);
+function sqlClient(env:Env,domain:MemoryDomain="corporate") {
+  const url=domain==="echo"?env.ECHO_DATABASE_URL:env.NEXUS_DATABASE_URL;
+  if (!url) throw new Error(domain==="echo"?"Echo Neon memory backend not configured":"Corporate Neon backend not configured");
+  return neon(url);
+}
+async function query(env:Env,statement:string,values:unknown[]=[],domain:MemoryDomain="corporate"):Promise<Row[]> {
+  const sql=sqlClient(env,domain);
   // Fixed, positional statements only. Untrusted callers cannot submit SQL.
   return await sql(statement, values) as Row[];
 }
@@ -49,23 +57,24 @@ async function internal(stub:DurableObjectStub,endpoint:string,payload?:unknown)
   return data;
 }
 async function queryGraph(env:Env,args:Record<string,any>) {
+  const domain=memoryDomain(args.domain);
   const nodeId=validateId(args.node_id,"node ID");
   const limit=clampLimit(args.limit,120);
-  const root=await query(env,"SELECT node_id,node_kind,label,details,attribution_ref,evidence_state FROM evidence_net.nodes WHERE node_id=$1",[nodeId]);
+  const root=await query(env,"SELECT node_id,node_kind,label,details,attribution_ref,evidence_state FROM evidence_net.nodes WHERE node_id=$1",[nodeId],domain);
   if(!root.length) throw new Error("Evidence node does not exist");
   const edges=await query(env,
     "SELECT edge_id,source_node,target_node,relation_type,relation_domain,evidence_state, supporting_card_id,supporting_card_revision,source_ref FROM evidence_net.edges WHERE source_node=$1 OR target_node=$1 ORDER BY recorded_at,edge_id LIMIT $2",
-    [nodeId,limit]);
+    [nodeId,limit],domain);
   const ids=Array.from(new Set([nodeId,...edges.flatMap(e=>[e.source_node,e.target_node])]));
   const nodes=await query(env,
     "SELECT node_id,node_kind,label,details,attribution_ref,evidence_state FROM evidence_net.nodes WHERE node_id=ANY($1::text[]) ORDER BY node_id",
-    [ids]);
+    [ids],domain);
   const cardIds=Array.from(new Set(edges.map(e=>e.supporting_card_id).filter(Boolean)));
   const cards=cardIds.length?
     await query(env,
       "SELECT card_id,revision,title,body,provenance,review_state FROM card_protocol.card_revisions WHERE card_id=ANY($1::text[]) ORDER BY card_id,revision LIMIT 100",
-      [cardIds]):[];
-  return evidenceProjection(nodes,edges,cards,"neon:"+nodeId);
+      [cardIds],domain):[];
+  return evidenceProjection(nodes,edges,cards,"neon:"+domain+":"+nodeId);
 }
 async function queryMatrix(env:Env) {
   const [apps,protocols,positions,agents,authority]=await Promise.all([
@@ -81,6 +90,7 @@ async function queryMatrix(env:Env) {
     source:"Existing NexusBoard Neon development records; no claim of deployed connections"};
 }
 async function readCatalog(env:Env,args:Record<string,any>) {
+  const domain=memoryDomain(args.domain);
   const cardId=validateId(args.card_id,"card ID");
   let rows:Row[];
   if(args.revision!==undefined){
@@ -88,14 +98,34 @@ async function readCatalog(env:Env,args:Record<string,any>) {
     if(!Number.isSafeInteger(rev)||rev<1) throw new Error("Invalid revision");
     rows=await query(env,
       "SELECT card_id,revision,card_kind,title,body,provenance,review_state FROM card_protocol.card_revisions WHERE card_id=$1 AND revision=$2 LIMIT 1",
-      [cardId,rev]);
+      [cardId,rev],domain);
   } else {
     rows=await query(env,
       "SELECT card_id,revision,card_kind,title,body,provenance,review_state FROM card_protocol.card_revisions WHERE card_id=$1 ORDER BY revision DESC LIMIT 1",
-      [cardId]);
+      [cardId],domain);
   }
   if(!rows.length) throw new Error("Catalog card revision not found");
-  return {record:rows[0],source:"Neon card_protocol.card_revisions"};
+  return {record:rows[0],domain,source:"Neon "+domain+" card_protocol.card_revisions"};
+}
+async function memoryIndex(env:Env,args:Record<string,any>) {
+  const domain=memoryDomain(args.domain);
+  const kind=args.kind;
+  const limit=clampLimit(args.limit,100);
+  if(kind==="networks"){
+    const records=await query(env,
+      "SELECT node_id,node_kind,label,attribution_ref,evidence_state FROM evidence_net.nodes ORDER BY node_id LIMIT $1",
+      [limit],domain);
+    return {domain,kind,records,source:"evidence_net.nodes",has_more:records.length===limit,
+      warning:"Bounded index page; do not interpret count as full database size"};
+  }
+  if(kind==="cards"){
+    const records=await query(env,
+      "SELECT DISTINCT ON(card_id) card_id,revision,title,card_kind,review_state FROM card_protocol.card_revisions ORDER BY card_id,revision DESC LIMIT $1",
+      [limit],domain);
+    return {domain,kind,records,source:"card_protocol.card_revisions",has_more:records.length===limit,
+      warning:"Latest revision per card in a bounded page; no writes"};
+  }
+  throw new Error("Unknown memory index type");
 }
 async function agentStub(env:Env,agentId:string){
   const id=validateId(agentId,"registered agent");
@@ -116,7 +146,9 @@ async function executeTool(env:Env,name:string,args:Record<string,any>){
     }
     case "switchboard.matrix":return await queryMatrix(env);
     case "evidence.graph.read":return await queryGraph(env,args);
+    case "evidence.network.index":return await memoryIndex(env,{...args,kind:"networks"});
     case "catalog.card.read":return await readCatalog(env,args);
+    case "catalog.card.index":return await memoryIndex(env,{...args,kind:"cards"});
     case "agent.inspect":{
       const {stub,registered}=await agentStub(env,args.agent_id);
       return {registered,local:await internal(stub,"/state?agent_id="+encodeURIComponent(registered.id))};
@@ -225,14 +257,21 @@ export default {
       if(req.method==="GET"&&url.pathname==="/v1/matrix")
         return json(await queryMatrix(env));
       if(req.method==="GET"&&url.pathname==="/v1/evidence/graph")
-        return json(await queryGraph(env,{node_id:url.searchParams.get("node_id"),limit:Number(url.searchParams.get("limit")||40)}));
+        return json(await queryGraph(env,{node_id:url.searchParams.get("node_id"),limit:Number(url.searchParams.get("limit")||40),
+          domain:url.searchParams.get("domain")||"corporate"}));
+      if(req.method==="GET"&&url.pathname==="/v1/evidence/index")
+        return json(await memoryIndex(env,{kind:"networks",domain:url.searchParams.get("domain")||"corporate",limit:Number(url.searchParams.get("limit")||60)}));
+      if(req.method==="GET"&&url.pathname==="/v1/catalog/index")
+        return json(await memoryIndex(env,{kind:"cards",domain:url.searchParams.get("domain")||"corporate",limit:Number(url.searchParams.get("limit")||60)}));
       if(req.method==="GET"&&url.pathname==="/v1/catalog/card")
         return json(await readCatalog(env,{card_id:url.searchParams.get("card_id"),
+          domain:url.searchParams.get("domain")||"corporate",
           ...(url.searchParams.has("revision")?{revision:url.searchParams.get("revision")}:{})}));
       return json({error:"Unknown endpoint"},404);
     }catch(error){
       const reason=error instanceof Error?error.message:"Unknown error";
-      return json({error:reason},/not found|does not exist|not registered|Unknown/i.test(reason)?404:400);
+      return json({error:reason},/not configured/i.test(reason)?503:
+        /not found|does not exist|not registered|Unknown/i.test(reason)?404:400);
     }
   }
 };
