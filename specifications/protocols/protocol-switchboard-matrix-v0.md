@@ -96,3 +96,61 @@ Do not assume a SQL schema migration or real transport has occurred merely becau
 ## Progress and test boundary
 
 This file is solely an architectural proposal. No MCP endpoint, ChatGPT skill installation, application connector, authorization delegation, or repository test is claimed. Before any future test in a GitHub repository, pre-register it in an issue/discussion per Timothy's instruction and report observed findings in the same thread.
+
+## 2026-11-13 — Historical telephone patchboard analogy: severable connections (PROPOSED)
+
+### Timothy's original conceptual extension
+Timothy compared the Matrixed Protocol Switchboard to the older **human-operated telephone switchboard**, where an operator plugs a patch cord into two distinct subscriber jacks to establish a **severable connection** between previously disconnected lines. He asks whether digital servers are analogues of analogue operator switchboards. This originated as a *conceptual model*, not a claim that an MCP gateway literally creates a permanent end-to-end circuit.
+
+### Architectural interpretation for discussion
+A generic server is **not** necessarily a switchboard. An authenticated **MCP gateway/orchestrator**, together with its operator runtime and capability registry, is a better analogue of the switchboard system. The historical operator is analogous to an authorized human or reasoning agent acting via workflow instructions; the switchboard mechanism is the governed gateway; the cord/patch is a scoped interface binding/session.
+
+| Manual phone system | Proposed Protocol Switchboard |
+|---|---|
+| Subscriber/line | Isolated application or logical service |
+| Physical jack/port | Explicit MCP tool, resource or interface endpoint |
+| Cord with two plugs | Versioned pair-interface / protocol binding from source to destination |
+| Operator selecting and connecting | Authorized human or agent selecting a contextual skill and invoking routing through gateway |
+| Jack-board / patch panel | Row-by-column app Matrix; each intersecting cell holds capability bindings |
+| Lamps/busy/supervision | Actual discovery, permission, call and execution-state indicators |
+| Plug-in establishment | Establish authorized, purpose-scoped invocation/session/workflow route |
+| Unplugging cord | End/revoke lease, close session, withdraw binding or revoke route without removing apps |
+| Completed call record | Audit event + trace/receipt; persistent outcome separate from the severed live connection |
+| Interoffice trunk | Governed multi-hop path through multiple pairwise bindings, each independently authorized |
+
+### Crucial two-part model: socket is not the connection
+A **port/capability** may exist continuously even when unused. A **connection/route instance** is established only for an authorized purpose and can then be ended without deleting the port, its app, the definition of the protocol or historical evidence. This permits connected services to remain **isolated by default**.
+
+Proposed per-button *runtime state machine* (not yet deployed):
+
+`declared → discovered → eligible → authorized → connecting → active → completed/disconnected`
+
+Alternative transitions: `denied`, `timed_out`, `failed`, `revoked`. Persist a receipt for each transition. **Discovery is not authorization; an invocation is not necessarily a persistent network connection.** Many MCP tools are discrete JSON-RPC calls; a visual 'patch cord' may represent a temporary *logical capability route*, not a physical or TCP socket. Streaming clients can have actual connections, but this is transport-specific.
+
+### Two separate matrix overlays
+- **Capability matrix (potential):** pair cells describe *which bridges may exist* with available versioned tools/protocols.
+- **Live patch matrix (actual):** active/authorized route instances with owner, purpose, TTL, route state, in-flight operation, revocation switch and audit receipt. A selected cell should let an operator view both.
+- **Historical evidence matrix:** separately browsable outcomes (success/fail/denial) that persist after disconnection.
+
+The proposed button is not a raw wire: it is a typed, inspectable **protocol logic sequence** with transformations, permissions, dependencies, checks, data-use limits and compensating actions. 'Severable' must mean true service-side revocation/termination and in-flight cancellation semantics where possible, not only hiding a line in the UI.
+
+### Example — Neon ↔ OpenDiagram
+1. Both apps/services are **listed**, but there is no active route.
+2. Operator selects the row/column intersection and a capability such as **Visualize Evidence**.
+3. The gateway discovers registered adapters and checks the requesting identity, purpose, graph ID, read scope and destination.
+4. It establishes a scoped logical workflow/lease. Neon reads the pinned graph revision and OpenDiagram renders the *returned* source-only graph. Each endpoint independently enforces permitted operations.
+5. After the result/receipt, the route closes or expires; the graph, service and protocol definitions remain. The operator can revoke a standing route explicitly.
+6. An audit record attests to the actual attempt and result; **no semantic claim is made by the visualization alone**.
+
+### Open decisions
+- Does 'unplugging' mean ending one call, terminating a streaming session, revoking an authorization lease, disabling the capability, or all four as separate operations?
+- Should operator control be manual, agent-selected under approved policies, or configurable by mission?
+- How do multi-hop routes avoid leaking credentials from one isolated app to another? Each callee must validate its own permissions.
+- Should the frontend have simulated patch cords visually drawn between selected row/column jacks, distinct from the protocol matrix cells?
+- How are active calls, historical receipts and capability discovery presented on mobile?
+- A port can be *technically available* but *policy-unavailable*; distinguish these visually rather than labeling all discovered routes 'connected'.
+
+### Research grounding
+Historical manual systems used jacks, answering/calling plugs, cord circuits and supervisory signals; see Bell System's *Machine Switching Telephone System* and manual switchboard descriptions. This is an analogy for architectural design, not a statement that modern MCP provides a circuit-switched connection primitive.
+
+**Status:** DISCUSSION / DOCUMENTED PROPOSAL ONLY. No application wire-up, server deployment, runtime test or authorization change.
