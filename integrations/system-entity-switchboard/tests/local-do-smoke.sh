@@ -3,9 +3,11 @@ set -euo pipefail
 # Pre-registered NexusBoard #4. Local workerd only; never a live deployment.
 export NEXUS_OPERATOR_TOKEN="ci-bootstrap-token-not-a-real-secret-1234"
 PORT=8799
+# Wrangler local runtime reads .dev.vars, not the parent shell environment.
+printf 'NEXUS_OPERATOR_TOKEN="%s"\n' "$NEXUS_OPERATOR_TOKEN" > .dev.vars
 npx wrangler dev --local --ip 127.0.0.1 --port "$PORT" > /tmp/nexusboard-workerd.log 2>&1 &
 worker=$!
-trap 'kill "$worker" 2>/dev/null || true' EXIT
+trap 'kill "$worker" 2>/dev/null || true; rm -f .dev.vars' EXIT
 ready=0
 for n in $(seq 1 30); do
   code=$(curl --silent --output /dev/null --write-out "%{http_code}" \
