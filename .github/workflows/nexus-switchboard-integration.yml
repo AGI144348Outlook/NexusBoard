@@ -27,3 +27,5 @@ jobs:
         run: npm test
       - name: Verify Worker and Durable Object Cloudflare bundling without deployment
         run: npm run build:check
+      - name: Verify real local Durable Object storage and fail-closed ingress
+        run: bash tests/local-do-smoke.sh
