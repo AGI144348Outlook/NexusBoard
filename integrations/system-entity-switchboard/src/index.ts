@@ -127,6 +127,25 @@ async function memoryIndex(env:Env,args:Record<string,any>) {
   }
   throw new Error("Unknown memory index type");
 }
+async function readLibrary(env:Env,args:Record<string,any>) {
+  const kind=args.kind??"all";
+  if(!["all","pdf","infographic"].includes(kind))throw new Error("Unsupported library kind");
+  const limit=clampLimit(args.limit,100);
+  const records=await query(env,
+    "SELECT asset_id,asset_kind,title,filename,source_ref,source_url,sha256,source_status,volume_source,metadata FROM switchboard.library_assets WHERE ($1::text='all' OR asset_kind=$1) ORDER BY asset_kind,asset_id LIMIT $2",
+    [kind,limit]);
+  return {protocol:"nexusboard.library-index/v1",source:"Neon corporate switchboard.library_assets",
+    records,total_returned:records.length,has_more:records.length===limit,
+    warning:"Metadata only; images/PDFs may not be publicly reachable; a record is not a completed reading by Echo"};
+}
+async function readGlossary(env:Env,args:Record<string,any>) {
+  const limit=clampLimit(args.limit,100);
+  const records=await query(env,
+    "SELECT entry_id,term,definition,source_ref,evidence_state FROM switchboard.glossary_entries ORDER BY term LIMIT $1",[limit]);
+  return {protocol:"nexusboard.notebooklm-glossary/v1",source:"Neon corporate switchboard.glossary_entries",
+    records,total_returned:records.length,awaiting_notebooklm_import:records.length===0,
+    note:"No glossary terms are invented or inferred from infographic filenames"};
+}
 async function agentStub(env:Env,agentId:string){
   const id=validateId(agentId,"registered agent");
   const registered=await query(env,"SELECT id,label,engine FROM nb.agents WHERE id=$1 LIMIT 1",[id]);
@@ -145,6 +164,8 @@ async function executeTool(env:Env,name:string,args:Record<string,any>){
         declaration:"Persistent DO identity is not proof of a running AI reasoning model"};
     }
     case "switchboard.matrix":return await queryMatrix(env);
+    case "knowledge.library.index":return await readLibrary(env,args);
+    case "knowledge.glossary.index":return await readGlossary(env,args);
     case "evidence.graph.read":return await queryGraph(env,args);
     case "evidence.network.index":return await memoryIndex(env,{...args,kind:"networks"});
     case "catalog.card.read":return await readCatalog(env,args);
@@ -256,6 +277,10 @@ export default {
         return json(await internal(identityStub(env),"/identity"));
       if(req.method==="GET"&&url.pathname==="/v1/matrix")
         return json(await queryMatrix(env));
+      if(req.method==="GET"&&url.pathname==="/v1/library/index")
+        return json(await readLibrary(env,{kind:url.searchParams.get("kind")??"all",limit:Number(url.searchParams.get("limit")||40)}));
+      if(req.method==="GET"&&url.pathname==="/v1/glossary/index")
+        return json(await readGlossary(env,{limit:Number(url.searchParams.get("limit")||40)}));
       if(req.method==="GET"&&url.pathname==="/v1/evidence/graph")
         return json(await queryGraph(env,{node_id:url.searchParams.get("node_id"),limit:Number(url.searchParams.get("limit")||40),
           domain:url.searchParams.get("domain")||"corporate"}));
