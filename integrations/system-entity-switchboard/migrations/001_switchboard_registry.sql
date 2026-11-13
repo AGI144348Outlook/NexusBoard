@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS switchboard.protocols (
   steps jsonb NOT NULL CHECK(jsonb_typeof(steps)='array'),
   status text NOT NULL DEFAULT 'proposed'
     CHECK (status IN ('proposed','configured','verified','disabled')),
-  authorization jsonb NOT NULL DEFAULT '{}'::jsonb CHECK(jsonb_typeof(authorization)='object'),
+  auth_policy jsonb NOT NULL DEFAULT '{}'::jsonb CHECK(jsonb_typeof(auth_policy)='object'),
   source_ref text,
   updated_at timestamptz NOT NULL DEFAULT now()
 );
@@ -67,7 +67,7 @@ INSERT INTO switchboard.apps(app_id,label,kind,lifecycle,notes) VALUES
 ON CONFLICT(app_id) DO NOTHING;
 
 INSERT INTO switchboard.protocols
-(protocol_id,version,from_app,to_app,title,effect_class,steps,status,authorization,source_ref) VALUES
+(protocol_id,version,from_app,to_app,title,effect_class,steps,status,auth_policy,source_ref) VALUES
  ('neon-evidence-to-open-diagram',1,'neon-board','open-diagram','Visualize pinned evidence graph','read',
   '["Authenticate requester and pin graph revision","Read evidence_net nodes and edges with source refs","Resolve linked catalog card revisions","Translate only existing relations to a diagram","Return visual receipt; never infer or write knowledge"]'::jsonb,'proposed',
   '{"required_scope":"evidence:read","audience":"operator"}'::jsonb,'NexusBoard#4'),
