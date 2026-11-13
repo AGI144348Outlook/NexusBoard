@@ -130,6 +130,35 @@ async function executeTool(env:Env,name:string,args:Record<string,any>){
       return await internal(stub,"/checkpoint",{agent_id:registered.id,idempotency_key:key,
         checkpoint:args.checkpoint});
     }
+    case "agent.message.route":{
+      const from=validateId(args.from_agent,"caller agent");
+      const to=validateId(args.to_agent,"destination agent");
+      const tool=validateId(args.tool,"corporate service tool");
+      const key=validateId(args.idempotency_key,"idempotency key");
+      if(from===to)throw new Error("Self-routing requires a separately authorized protocol");
+      if(typeof args.purpose!=="string"||args.purpose.trim().length<3)
+        throw new Error("Purpose-of-use required");
+      if(!args.payload||typeof args.payload!=="object"||Array.isArray(args.payload)||
+          JSON.stringify(args.payload).length>16384)
+        throw new Error("Missing or oversized message payload");
+      const [source,permission,service]=await Promise.all([
+        query(env,"SELECT id FROM nb.agents WHERE id=$1 LIMIT 1",[from]),
+        query(env,"SELECT tool FROM nb.authority WHERE parent_id=$1 AND child_id=$2 AND tool=$3 LIMIT 1",[from,to,tool]),
+        query(env,"SELECT enabled FROM nb.services WHERE node_id=$1 AND tool=$2 AND enabled=true LIMIT 1",[to,tool]),
+      ]);
+      if(!source.length||!permission.length||!service.length)
+        throw new Error("Corporate route denied: missing registered caller, direct charter authority or enabled destination service");
+      const {stub}=await agentStub(env,to);
+      const reply=await internal(stub,"/mcp",{
+        jsonrpc:"2.0",id:key,method:"tools/call",params:{
+          name:"seat.message.accept",arguments:{agent_id:to,from_agent:from,
+            purpose:args.purpose,source_tool:tool,payload:args.payload,idempotency_key:key},
+        },
+      });
+      if(reply.result?.isError)throw new Error("Destination agent refused the message");
+      return {operation_state:"accepted_for_seat_local_processing",
+        from_agent:from,to_agent:to,tool,receipt:reply.result};
+    }
     case "protocol.route":{
       if(args.action!=="connect"&&args.action!=="disconnect")throw new Error("Unknown route action");
       const pid=validateId(args.protocol_id,"protocol ID");
@@ -250,10 +279,42 @@ export class SystemEntity extends DurableObject<Env>{
 export class CorporateAgent extends DurableObject<Env>{
   async fetch(req:Request):Promise<Response>{
     const url=new URL(req.url),data=req.method==="POST"?bodyObject(await req.json()):{};
-    const id=validateId(url.searchParams.get("agent_id")||data.agent_id,"agent ID");
+    const id=validateId(url.searchParams.get("agent_id")||data.agent_id||data.params?.arguments?.agent_id,"agent ID");
     const recorded=await this.ctx.storage.get<string>("agent_identity");
     if(recorded&&recorded!==id)return json({error:"Agent identity mismatch"},403);
     if(!recorded)await this.ctx.storage.put("agent_identity",id);
+    if(url.pathname==="/mcp"&&req.method==="POST"){
+      const requestId=data.id??null;
+      if(data.method==="initialize")
+        return json({jsonrpc:"2.0",id:requestId,result:{
+          protocolVersion:MCP_VERSION,capabilities:{tools:{listChanged:false}},
+          serverInfo:{name:"nexusboard-corporate-agent:"+id,version:"0.1.0"}}});
+      if(data.method==="tools/list")
+        return json({jsonrpc:"2.0",id:requestId,result:{tools:[
+          {name:"seat.identity",description:"Read this particular Agent Durable Object identity and local state.",inputSchema:{type:"object",properties:{agent_id:{type:"string"}},required:["agent_id"]}},
+          {name:"seat.message.accept",description:"Persist a charter-authorized message envelope; does not auto-reason or approve source facts.",inputSchema:{type:"object",properties:{agent_id:{type:"string"},from_agent:{type:"string"},purpose:{type:"string"},source_tool:{type:"string"},payload:{type:"object"},idempotency_key:{type:"string"}},required:["agent_id","from_agent","purpose","source_tool","payload","idempotency_key"]}},
+        ]}});
+      if(data.method==="tools/call"){
+        const args=bodyObject(data.params?.arguments??{});
+        if(data.params?.name==="seat.identity"){
+          const checkpoint=await this.ctx.storage.get<Row>("checkpoint");
+          return json({jsonrpc:"2.0",id:requestId,result:{content:[
+            {type:"text",text:JSON.stringify({agent_id:id,checkpoint:checkpoint??null})}],isError:false}});
+        }
+        if(data.params?.name==="seat.message.accept"){
+          const key=validateId(args.idempotency_key,"message idempotency key");
+          const before=await this.ctx.storage.get<Row>("message:"+key);
+          const receipt=before??{agent_id:id,from_agent:validateId(args.from_agent),
+            source_tool:validateId(args.source_tool),purpose:String(args.purpose),
+            saved_at:new Date().toISOString(),status:"received_not_interpreted",
+            envelope:args.payload,idempotency_key:key};
+          if(!before)await this.ctx.storage.put("message:"+key,receipt);
+          return json({jsonrpc:"2.0",id:requestId,result:{content:[
+            {type:"text",text:JSON.stringify(receipt)}],isError:false}});
+        }
+      }
+      return json({jsonrpc:"2.0",id:requestId,error:{code:-32601,message:"Unknown Agent MCP operation"}},404);
+    }
     if(url.pathname==="/state"){
       const checkpoint=await this.ctx.storage.get<Row>("checkpoint");
       return json({agent_id:id,identity_persistent:true,checkpoint:checkpoint??null,
