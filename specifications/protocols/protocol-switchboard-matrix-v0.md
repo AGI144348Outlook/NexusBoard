@@ -154,3 +154,88 @@ The proposed button is not a raw wire: it is a typed, inspectable **protocol log
 Historical manual systems used jacks, answering/calling plugs, cord circuits and supervisory signals; see Bell System's *Machine Switching Telephone System* and manual switchboard descriptions. This is an analogy for architectural design, not a statement that modern MCP provides a circuit-switched connection primitive.
 
 **Status:** DISCUSSION / DOCUMENTED PROPOSAL ONLY. No application wire-up, server deployment, runtime test or authorization change.
+
+## 2026-11-13 — Context → Model → Operation → Integration: meta-relational layering (BRAINSTORM)
+
+### Timothy's originating abstraction — verbatim conceptual components
+Timothy places **Integration**, especially the previously defined "**Severable Protocol Connection**," as a *general layer above* the general foundational MCP mechanism and above a layer of established MCP rules between them. The material he offered for interpretation is:
+
+> Component MCP Foundation: Registry Catalog box : evidence index cards : Context  
+> Hardware :: Software
+>
+> Pieced Establishing MCP Rules Layer : Matrix Switchboarding : Evidence Networking Board : model  
+> Software :: Processing
+>
+> Protocol: evidence Index Card : MCP information Routing : intermediate layer : operators' operational switchboard operations : un/plugging
+
+His subsequent combinable abstract components include:
+- "**Those:=:That::This:=:These:=:This::That:=:Those**" (original symbolic notation preserved without assigning an unconfirmed formal identity).
+- "**Matrixed Agents as Interfacing Switchboard for routing information**."
+- "**Listed capabilities context**."
+- "**Capabilities Modeled into Switchboard tools**."
+- "**Contextually Modeled Button/Port Tools**."
+- "**Skills wiring operational Logic of protocols**."
+
+**Preservation rule:** This is an evolving conceptual hypothesis; the following is an assistant's *proposed formal interpretation*, not Timothy's finalized or algebraically proved notation.
+
+### Candidate architectural stratification
+
+| Distinction | Primary function | Concrete persistence / form | Not equivalent to |
+|---|---|---|---|
+| **Foundation / component context** | Register the existence, identity, boundaries, signatures, evidence, version and discoverability of capabilities | MCP tool/resource schemas; CatalogBox evidence index cards; registered Agent/DO identities; source receipts | A deployed or authorized app-to-app connection |
+| **Rules / relational model** | Model *which combinations could become valid*, their direction, parameter compatibility, policy, relationship evidence and provenance; define matrix intersections | App × App, Agent/Seat × Agent/Seat cells, connection contracts, Evidence Board links and candidate protocol sequences | An action having already executed |
+| **Operational protocol / operator processing** | Under approved scope, select a modeled cell, bind inputs and outputs, establish a revocable route/lease, invoke the steps, verify outcomes and sever when done | MCP tool invocation, DO route state, data-transform operations, checkpoint and per-step audit receipts | Changing underlying capability identity or granting authority by description |
+| **Contextual integration / resulting relationship** | Materialize higher-order interoperability as an evidenced, purpose-scoped, inspectable, terminable connection between previously isolated capabilities | Revisioned interface protocol + active/historical execution graph, attributed to both source capabilities, without permanently merging them | Permanent code coupling or a claim that all apps now share one unrestricted authority |
+
+The levels are *architectural proposals* layered **on top of** MCP's actual wire transport/tool discovery/invocation semantics. They do **not** change standardized MCP core rules; they establish user/system-specific *application-level* conditions for coordinating MCP participants.
+
+### Three simultaneous evidence networks (one Neon evidence infrastructure)
+1. **Catalog evidence of available components**: capability identity and advertised tool schema, documentary source, version, provider and actual verified status. A registry card is a statement about an endpoint, not proof of a successful execution.
+2. **Model evidence of compatible relations**: why a particular row/column crossing may represent a workable interface; source and destination requirements, mappings, policies, transformations, direction, authority, known conflicts and provisional status.
+3. **Operational evidence of enacted connections**: exact protocol revision, invoker, permission result, route/lease ID, steps, inputs/outputs references, observations, failures, revocations and resulting graph revisions.
+
+These evidence families are *linked* but their claims are separate: advertised ≠ compatible ≠ authorized ≠ invoked ≠ succeeded ≠ semantically true. An existing source node can support a model hypothesis; a successful route does not automatically validate the model's domain assertions.
+
+### Logical transformations: Hardware::Software and Software::Processing
+- **Hardware::Software** can be treated as a **boundary analogy**: a component (physical/digital runtime/isolated endpoint) is described through an exposed software capability/port; this is *not* a literal rule that every MCP port must have separate hardware.
+- **Software::Processing** expresses a shift from documented callable functionality to a concrete invocation/workflow under contextual constraints.
+- The pair of mappings suggests a bridge from *what exists*, through *what relationships may be modeled*, to *what happens on execution*.
+- A skills manual can specify when/why to select a protocol and how to interpret its recorded outcomes; only the authenticated runtime can perform the calls. The skills layer should not be confused with an authorization service.
+
+### Agent matrix as a switchboard of switchboard participants
+Every independently registered corporate agent can be both:
+- An **addressable corporate endpoint** (row and column) exposing an allowed set of MCP capabilities under its charter.
+- A **possible operator** for other permitted matrix connections through the central governed switchboard.
+
+These identities differ: having a seat record or DO does not entail model cognition, privilege, or an active connection. The corporate agent matrix routes information within a jurisdiction; the application matrix makes available external/internal service capabilities. Higher-order workflows can traverse multiple approved cells, but cannot launder permissions between them.
+
+### Button / port / skill decomposition
+- **Evidence index card**: capability is recorded in context (identity, source, schema, scope, current status).
+- **Modeled matrix cell**: an interface between two nominated participants, with compatibility evidence and directional relations.
+- **Button/port**: a concrete *named protocol binding*, with predictable inputs, intended effect and visible state (proposed, ready, denied, active, failed, revoked).
+- **Skill**: contextual operating instructions describing *which* button or sequence to use, *under what conditions*, with how much evidence and what fallback.
+- **Operational protocol**: the live, policy-enforced sequence of calls and transformations behind that button, with recorded receipts.
+- **Severable integration**: a relationship established for a purpose, which can terminate while its catalog description and historical execution evidence remain persistent.
+
+### Provisional mathematical reading — **not** formalized
+Timothy's expression `Those:=:That::This:=:These:=:This::That:=:Those` evokes **context-dependent changes of referent, perspective and relational roles**. Do *not* assume the tokens are algebraic equality, commutative invertibility, or identity proof. A cautious implementation analogue is directional mapping:
+
+`capability_A --[context, contract, authority, operation]--> capability_B`  
+`capability_B --[potentially different context, contract, authority, operation]--> capability_A`
+
+The second route is independent and may be absent. Ask Timothy for intended binding semantics if this notation is to become a formal algebra.
+
+### Concrete illustrative walk-through — Neon Evidence ↔ OpenDiagram
+1. **Context card:** Neon has `evidence.graph.read` (if actually deployed and discovered); OpenDiagram has a render interface. Both registrations include schema, provenance, verification state.
+2. **Model:** cell `Neon → OpenDiagram` defines `visualize source-only graph`, mapping evidence IDs to diagram IDs without inventing semantic relations.
+3. **Operational skill:** on a permitted human/agent request, discover the binding, check source and scope, invoke authorized graph read, validate response, render, and record receipt. End logical lease if one was established; leave evidence intact.
+4. **Integration:** the two services have participated in a purpose-scoped evidence-backed connection; neither service must absorb the other's storage or become permanently interdependent.
+
+### Open design questions / non-claims
+- Is **Integration** a fourth explicit top-level model, a resulting relationship recorded as a first-class graph node, or an umbrella name for the three lower layers? The user describes it as *general*, so do not prematurely force one option.
+- What exact algebraic operations and equivalence conditions are meant by `Those:=:That::This:=:These:=:This::That:=:Those`?
+- Can the relation model connect a *skill* itself as a versioned source-card capability, or should it remain an instructional descriptor attached to an operational binding?
+- Should a matrix button be a **port definition**, a **route template**, or a **currently activated connection**? The UI should distinguish all three even if displayed together.
+- What scope of evidence becomes immutable versus revisable, and what does operator-driven disconnection mean for a running multi-hop workflow?
+
+**Status:** conceptual addendum, not a schema change, test result, or assertion of new deployed capability. No CI triggered by this documentation change; preserve the preregistered experiments and the integration implementation status separately.
