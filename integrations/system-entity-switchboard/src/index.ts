@@ -4,6 +4,7 @@ import {
   bearerAuthorized,clampLimit,evidenceProjection,makePairMatrix,
   MCP_VERSION,permittedMcpTools,routeEligible,validateId,
 } from "./core.mjs";
+import { mindmapCommit, mindmapList, mindmapRead } from "./mindmap";
 
 /** Bootstrap-owner-only; replace with OAuth and per-seat service principals before production. */
 interface Env {
@@ -164,6 +165,9 @@ async function executeTool(env:Env,name:string,args:Record<string,any>){
         declaration:"Persistent DO identity is not proof of a running AI reasoning model"};
     }
     case "switchboard.matrix":return await queryMatrix(env);
+    case "mindmap.list":return await mindmapList(env,args);
+    case "mindmap.read":return await mindmapRead(env,args);
+    case "mindmap.commit":return await mindmapCommit(env,args,{kind:"authorized_mcp_operator",ref:"nexusboard_mcp_gateway"});
     case "knowledge.library.index":return await readLibrary(env,args);
     case "knowledge.glossary.index":return await readGlossary(env,args);
     case "evidence.graph.read":return await queryGraph(env,args);
@@ -235,7 +239,7 @@ function mcpErr(id:unknown,code:number,message:string){
 async function handleMcp(req:Request,env:Env) {
   if(req.method!=="POST")return json({error:"MCP endpoint only accepts POST"},405);
   const raw=await req.text();
-  if(raw.length>100000)return json({error:"Request too large"},413);
+  if(raw.length>1800000)return json({error:"Request too large"},413);
   let msg:Row;
   try{msg=bodyObject(JSON.parse(raw))}catch{return json(mcpErr(null,-32700,"Parse error"),400)}
   if(msg.jsonrpc!=="2.0"||typeof msg.method!=="string")
@@ -273,6 +277,21 @@ export default {
         return json({error:"Unauthorized"},401);
       const url=new URL(req.url);
       if(url.pathname==="/mcp")return await handleMcp(req,env);
+      if(req.method==="POST"&&url.pathname==="/v1/mindmaps/commit"){
+        const raw=await req.text();
+        if(raw.length>1800000)return json({error:"Mindmap request too large"},413);
+        let body:Row;
+        try{body=bodyObject(JSON.parse(raw))}catch{return json({error:"Invalid mindmap JSON"},400)}
+        // The owner-authenticated OpenDiagram server proxy supplies this identity.
+        // The bearer token is a bootstrap privileged server credential.
+        const operator=validateId(body.operator_user_id,"owner operator user ID");
+        return json(await mindmapCommit(env,body,{kind:"owner_operator",ref:operator}),201);
+      }
+      if(req.method==="GET"&&url.pathname==="/v1/mindmaps/index")
+        return json(await mindmapList(env,{limit:Number(url.searchParams.get("limit")||50)}));
+      if(req.method==="GET"&&url.pathname==="/v1/mindmaps/read")
+        return json(await mindmapRead(env,{map_id:url.searchParams.get("map_id"),
+          ...(url.searchParams.has("revision")?{revision:Number(url.searchParams.get("revision"))}:{})}));
       if(req.method==="GET"&&url.pathname==="/v1/identity")
         return json(await internal(identityStub(env),"/identity"));
       if(req.method==="GET"&&url.pathname==="/v1/matrix")
@@ -295,7 +314,8 @@ export default {
       return json({error:"Unknown endpoint"},404);
     }catch(error){
       const reason=error instanceof Error?error.message:"Unknown error";
-      return json({error:reason},/not configured/i.test(reason)?503:
+      return json({error:reason},/revision conflict|Commit ID already used/i.test(reason)?409:
+        /not configured/i.test(reason)?503:
         /not found|does not exist|not registered|Unknown/i.test(reason)?404:400);
     }
   }
