@@ -1,0 +1,34 @@
+name: ECHO-MINDMAP-001 guarded Neon memory commit contract checks
+on:
+  push:
+    branches: [feature/echo-neon-mindmap-commit]
+    paths:
+      - "integrations/system-entity-switchboard/**"
+      - ".github/workflows/echo-mindmap-commit.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: integrations/system-entity-switchboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Confirm prospective GitHub research plan
+        run: |
+          echo "PRE-TEST NexusBoard: https://github.com/AGI144348Outlook/NexusBoard/issues/5"
+          echo "PRE-TEST OpenDiagram: https://github.com/AGI144348Outlook/Open_Diagram/issues/15"
+      - name: Install Worker dependencies
+        run: npm install --no-audit --no-fund
+      - name: Verify mindmap validation and earlier gateway contracts
+        run: npm test
+      - name: Bundle Cloudflare Worker and Durable Objects locally
+        run: npm run build:check
+      - name: Verify local persistent identity and anonymous request denial
+        run: bash tests/local-do-smoke.sh
