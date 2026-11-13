@@ -1,0 +1,21 @@
+name = "nexusboard-system-entity-switchboard"
+main = "src/index.ts"
+compatibility_date = "2026-11-13"
+compatibility_flags = ["nodejs_compat"]
+
+[[durable_objects.bindings]]
+name = "SYSTEM_ENTITY"
+class_name = "SystemEntity"
+
+[[durable_objects.bindings]]
+name = "CORPORATE_AGENT"
+class_name = "CorporateAgent"
+
+[[migrations]]
+tag = "nexusboard-system-entity-v1"
+new_sqlite_classes = ["SystemEntity", "CorporateAgent"]
+
+[vars]
+NEXUS_ENTITY_ID = "nexusboard"
+# Set NEXUS_DATABASE_URL and NEXUS_OPERATOR_TOKEN with wrangler secret put.
+# Optional NEXUS_ALLOWED_ORIGINS should restrict browser Origins; proxy calls have no Origin.
