@@ -182,6 +182,13 @@ See [historical-conversation and SkillBlock discussion](https://github.com/AGI14
 - **Exterior SkillBlock Surface / Port** — A proposed externally addressable interface where a SkillBlock advertises possible interconnections with typed contracts and explicit authority.
 - **Modular Assembly** — Arrangement of multiple components or SkillBlocks with versioned, replaceable interfaces, without assuming adjacency implies connectivity.
 - **Laboratory Garage** — Proposed workbench metaphor in which walls, drawers, workstations and shelves organize tools, architectural resources, instructions, and evidence.
+- **Office Domain SkillBlock** — Proposed SkillBlock assigned to a NexusBoard constitutional office (seat), configured around its charter, responsibility, capabilities, evidence scope, workflows, and tool inventory. It is a **workspace/domain resource**, not the office's identity, a new constitutional seat, or proof of isolation. Its owner and versioning belong to office-level governance; an Agent's ability to use it is separately authorized.
+- **Office Garage Laboratory / Office Domain Garage** — A proposed operational environment in which one or more authorized Agents employ the Office Domain SkillBlock to inspect resources, conduct assigned work, draft or execute governed protocols, and record outcomes. The garage may expose walls, drawers, benches and workstations as UI metaphors; these do not replace runtime security boundaries.
+- **Office Domain Configuration** — The versioned inventory of an office's accessible Skills, MCP tool/resource declarations, reference evidence, workflow templates, interface contracts and local working structures. Changing configuration and executing a tool are distinct permissions.
+- **Office Domain Session / Workspace Lease** — A scoped, authenticated Agent or Operator session for interacting with a particular Office Domain. It is not the permanent office identity and does not inherit every advertised office capability.
+- **Shared Office Laboratory** — A Garage/SkillBlock configured for use by multiple authorized Agents, each with their own identity, scope, state and audit trail. Shared access is not shared permission.
+- **Cross-Office SkillBlock Route** — A proposed typed interface between two Office Domain SkillBlocks, evaluated against corporate seat charters and the independent authorization policy of each called MCP endpoint. An adjacent cube or visible cord does not grant access.
+- **Office Domain Persistence** — Records and versioned workspace configuration belonging to an enduring office rather than to an individual Agent's working state; the domain can remain available through seat-occupant, model, and Operator changes. Storage location, authority and retention must be defined explicitly.
 - **Tool Drawer** — A proposed UI grouping for discoverable capabilities and their prerequisites, schemas, authorization, state and execution history.
 - **Blueprint** — A versioned design specification identifying requirements, components, contracts, assumptions, rationale, status and testable acceptance criteria.
 - **Verification Workspace** — Proposed environment for displaying expected versus observed behavior, authorization outcomes, sources, tests, failures and audit reconstruction.
@@ -190,6 +197,22 @@ See [historical-conversation and SkillBlock discussion](https://github.com/AGI14
 - **AIBubble** — A separate Android overlay/interface concept used as a comparison for an expanded WebApp launch experience. It is not a synonym for OpenDiagram or the workbench.
 
 The six particular wall responsibilities discussed so far—archive intake, conversation context, evidence, protocols, operations, and governance—are **provisional examples**, not mandated permanent face assignments.
+
+### Office-domain application of SkillBlocks (proposed)
+
+A constitutional **seat/office** may be assigned a persistent Office Domain SkillBlock and a configurable Garage Laboratory interface. The **seat's charter** determines the jurisdiction and governance constraints; the **SkillBlock** supplies contextual organization and declared capabilities; an **Agent** works within that environment only under its own authenticated, scoped authority. Different Agents may use the same office workspace, and one Agent may be granted access to more than one domain for a specified mission. The physical count of office domains is not fixed by the proposed twenty-seat structure.
+
+Illustrative, not currently asserted as deployed:
+
+| Constitutional office | Example Office Garage/Laboratory focus |
+|---|---|
+| CTO | Architecture, MCP server/tool design, interface contracts, code and authorized deployment workflows |
+| CARO / AR | Resource intake, contextual representations, relation proposals, evidence routing and improvement hypotheses |
+| CKO | Institutional memory, evidence retrieval, source indexing, archive continuity and contextual note review |
+| CISO | Security policy reviews, access scopes, revocations and permission evidence |
+| VP R&D | Experimental design, preregistration, observations, falsifiable claims and reproducibility records |
+
+**Boundary conditions:** a Garage is neither the Agent nor its model, neither a stand-alone security principal nor an automatic MCP server. Permissions and budgets must be checked at the target service; office and Agent state are related but not identical; shared storage needs scoped access and source provenance. SkillWall orientation, how many SkillBlocks an office receives, the default domain topology, and whether any garages share physical deployments remain open design questions.
 
 ## 6. Persistence, infrastructure and execution
 
