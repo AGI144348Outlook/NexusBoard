@@ -1,0 +1,72 @@
+{
+  "schema": "contract000.branch-map.v1",
+  "repository": "AGI144348Outlook/NexusBoard",
+  "source_snapshot_date": "2026-11-15",
+  "maintenance_branch": "main",
+  "excluded_root": "Contract000_Audit",
+  "branches": [
+    {
+      "id": 0,
+      "name": "design/protocol-switchboard-matrix-v0",
+      "folder": "design%2Fprotocol-switchboard-matrix-v0",
+      "source_commit": "920aa825f743f705f1f014c54710c50c6efd9367",
+      "source_tree": "920aa825f743f705f1f014c54710c50c6efd9367",
+      "entry": "design%2Fprotocol-switchboard-matrix-v0/protocols/Contract_ReadMe/Contract000_readme.md",
+      "next_branch_id": 1
+    },
+    {
+      "id": 1,
+      "name": "docs/volume-v-notebooklm-infographic-prompts",
+      "folder": "docs%2Fvolume-v-notebooklm-infographic-prompts",
+      "source_commit": "7db2ecdd5d4b9614f52665f91f2a0f61d9630c79",
+      "source_tree": "7db2ecdd5d4b9614f52665f91f2a0f61d9630c79",
+      "entry": "docs%2Fvolume-v-notebooklm-infographic-prompts/protocols/Contract_ReadMe/Contract000_readme.md",
+      "next_branch_id": 2
+    },
+    {
+      "id": 2,
+      "name": "feature/echo-neon-mindmap-commit",
+      "folder": "feature%2Fecho-neon-mindmap-commit",
+      "source_commit": "3d54f82499251b7932b882a6bffb9cf4cdef835b",
+      "source_tree": "3d54f82499251b7932b882a6bffb9cf4cdef835b",
+      "entry": "feature%2Fecho-neon-mindmap-commit/protocols/Contract_ReadMe/Contract000_readme.md",
+      "next_branch_id": 3
+    },
+    {
+      "id": 3,
+      "name": "feature/neon-card-evidence",
+      "folder": "feature%2Fneon-card-evidence",
+      "source_commit": "8d114def08463ed85d6dc7097c6fe633a48c43db",
+      "source_tree": "8d114def08463ed85d6dc7097c6fe633a48c43db",
+      "entry": "feature%2Fneon-card-evidence/protocols/Contract_ReadMe/Contract000_readme.md",
+      "next_branch_id": 4
+    },
+    {
+      "id": 4,
+      "name": "feature/system-entity-switchboard-neon-opendiagram",
+      "folder": "feature%2Fsystem-entity-switchboard-neon-opendiagram",
+      "source_commit": "6d4baafec38da53ddc6198b21ce74126ee133d35",
+      "source_tree": "6d4baafec38da53ddc6198b21ce74126ee133d35",
+      "entry": "feature%2Fsystem-entity-switchboard-neon-opendiagram/protocols/Contract_ReadMe/Contract000_readme.md",
+      "next_branch_id": 5
+    },
+    {
+      "id": 5,
+      "name": "main",
+      "folder": "main",
+      "source_commit": "313fbee4027a598da39c4b738f65960851e0c69d",
+      "source_tree": "313fbee4027a598da39c4b738f65960851e0c69d",
+      "entry": "main/protocols/Contract_ReadMe/Contract000_readme.md",
+      "next_branch_id": 6
+    },
+    {
+      "id": 6,
+      "name": "mcp",
+      "folder": "mcp",
+      "source_commit": "14764d1fb20c1ac10c6e0b587ed2a19c15d72aea",
+      "source_tree": "14764d1fb20c1ac10c6e0b587ed2a19c15d72aea",
+      "entry": "mcp/protocols/Contract_ReadMe/Contract000_readme.md",
+      "next_branch_id": 0
+    }
+  ]
+}
