@@ -1,15 +1,23 @@
 {
   "schema": "contract000.audit-checkpoint.v1",
   "repository": "AGI144348Outlook/NexusBoard",
-  "represented_branch": "RESOLVE_FROM_PARENT_BRANCH_FOLDER",
+  "represented_branch": "design/protocol-switchboard-matrix-v0",
+  "source_commit": "920aa825f743f705f1f014c54710c50c6efd9367",
   "category": "protocols",
   "phase": "VERIFY_DIRECTORY",
-  "directory_status": "GENERATED_FROM_PINNED_GITHUB_TREES",
+  "directory_status": "BLOCKED_RECURSIVE_TREE_LISTING_UNAVAILABLE",
   "content_status": "NOT_AUDITED",
   "last_completed_file": null,
   "within_file_position": null,
   "findings": [],
-  "blockers": [],
+  "blockers": [
+    {
+      "code": "CURRENT_RECURSIVE_TREE_UNAVAILABLE",
+      "detail": "Available GitHub connector cannot enumerate all current branch recursive source trees for comparison with the seven-branch names-only header; no content audit may be claimed."
+    }
+  ],
   "next_directory": "../../skills/Contract_ReadMe/Contract000_readme.md",
+  "resume": "Verify current seven branch tips and full recursive source paths/types against the header, excluding root Contract000_Audit/**; then begin first source file.",
+  "report_issue": "https://github.com/AGI144348Outlook/NexusBoard/issues/6#issuecomment-6892704784",
   "updated": "2026-11-15"
 }
