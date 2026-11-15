@@ -24,4 +24,4 @@ Create schema and tables with additive SQL tracked as migration code. Perform sc
 The separately scheduled weekly issue-review task discovers and classifies accessible issues. Contract 000 hourly maintenance continues independently. They may cross-reference source pins through the catalog. NexusBoard public research/report docs remain editorial summaries; private issue details remain inside authorized private storage.
 
 ## Status
-Existing project and `nb` schema observed. New catalog deployment must be confirmed from Neon migration results; do not assume completed from this design document.
+Existing project and `nb` schema observed. Migration 20261115_documentation_catalog.sql was prepared successfully in Neon temporary branch br-calm-hall-bblt8c1p on 2026-11-15. Read-only checks confirmed nine documentation_catalog tables, seed box NB-DOC-000 (restricted), and no public schema USAGE grant. **The default Neon branch is not yet migrated.** Applying the staged migration requires the Neon completion/approval step; catalog ingestion and authenticated app access are not implemented.
