@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS documentation_catalog.analysis_reports (
 );
 
 CREATE TABLE IF NOT EXISTS documentation_catalog.evidence_links (
-  link_id bigint GENERATED ALWAYS AS ID PRIMARY KEY,
+  link_id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   source_kind text NOT NULL,
   source_identifier text NOT NULL,
   target_kind text NOT NULL,
