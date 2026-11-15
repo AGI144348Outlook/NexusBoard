@@ -1,5 +1,5 @@
 -- NexusBoard Documentation Catalog Box
--- Migration: 2026-11-15-001. Additive only; no existing nb.* tables altered.
+-- Migration: 2026-11-15-001. Additive only. No existing nb tables are altered.
 -- Deployment target: Neon nexusboard-inc, default database and branch.
 -- No public schema grants. Application auth must enforce source visibility.
 CREATE SCHEMA IF NOT EXISTS documentation_catalog;
