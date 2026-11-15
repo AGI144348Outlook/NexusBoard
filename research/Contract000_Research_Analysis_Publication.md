@@ -1,5 +1,5 @@
 # Contract 000 — Cross-Domain Analysis and Publication Extension
-Version: 0.1 | Date: 2026-11-15 | Status: proposed extension for incorporation into the governing Contract 000
+Version: 0.1 | Date: 2026-11-15 | Status: incorporated into governing Contract 000 §10 and the hourly automation instructions on 2026-11-15
 
 ## Mandate
 During bounded Contract 000 visits, identify worthwhile questions for rigorous, researcher-readable usability, notation, conceptual, comparative, historical, technical, and operational analyses. Analyses MUST NOT be limited to the NexusBoard repository or any repository: external standards, human-computer interaction, MCP, visual languages, information science, and original research are eligible. NexusBoard is the archival and editorial destination, not the limit of inquiry. Respect existing Contract 000 priorities and time budgets; do not manufacture a report every run.
@@ -20,5 +20,5 @@ During bounded Contract 000 visits, identify worthwhile questions for rigorous, 
 - Reports are NOT automatically textbook chapters. Editorial adaptation is a separate reviewable step.
 - Do not merge the textbook branch to main without explicit approval.
 
-## Proposed Contract 000 integration
-Treat this file as an append-only extension candidate. The controlling Contract 000 document and automated task prompt must be reconciled with this extension; do not claim the governing contract or automation has been updated until separately verified.
+## Contract 000 integration and separate schedule
+The authoritative Echo_Green_Future main:Contract000_Audit/CONTRACT-000.md now contains §10 linking this extension. The existing hourly Contract 000 automation instructions were amended without changing their rotation. A separate weekly GitHub Issues Research Review automation is scheduled Monday mornings, beginning 2026-11-16. Research reports are optional during bounded hourly visits; no report quota is imposed. Neon catalog schema is verified on a migration staging branch and pending approved completion to the default Neon branch.
