@@ -4,10 +4,11 @@
   "branch_index": 0,
   "category_index": 0,
   "next_directory": "design%2Fprotocol-switchboard-matrix-v0/protocols/Contract_ReadMe/Contract000_readme.md",
-  "directory_status": "BLOCKED_RECURSIVE_TREE_LISTING_UNAVAILABLE",
-  "content_status": "NOT_AUDITED",
-  "last_run_id": "automation-turn-11-2026-11-15T04:00:00-06:00 (runtime surrogate; scheduler UUID unavailable)",
-  "last_visit_commit": "d46f9aab41a199bdfb1246e3d147e3891a15be4c",
+  "directory_status": "PINNED_7_VERIFIED_CURRENT_MAIN_13_ADDITIONS_PENDING_HEADER_REFRESH",
+  "content_status": "PARTIAL",
+  "last_run_id": "automation-turn-11-2026-11-16T12:00:20-06:00",
+  "last_visit_commit": "7108535c15a1d9e55f45e2476e6cd344f6f89c10",
   "report_issue": "https://github.com/AGI144348Outlook/NexusBoard/issues/6#issuecomment-6892704784",
-  "updated": "2026-11-15"
+  "updated": "2026-11-16",
+  "next_file": ".github/ISSUE_TEMPLATE/pre-test-plan.md"
 }
