@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "review_id": "NXB-RPT-0004",
+  "last_review_date": "2026-11-16",
+  "scope": "bounded_account_owner_review",
+  "account_owner": "AGI144348Outlook",
+  "source_search": "user:AGI144348Outlook is:issue updated:>=2026-11-09",
+  "repositories_content_reviewed": 5,
+  "issues_body_and_comments_reviewed": 10,
+  "neon_catalog_upserts": 0,
+  "neon_status": "DEFAULT_BRANCH_SCHEMA_ABSENT__MIGRATION_AWAITING_APPROVAL",
+  "reviewed_issues": [
+    [
+      "NexusBoard",
+      [
+        3,
+        5,
+        7,
+        8,
+        9
+      ]
+    ],
+    [
+      "Open_Diagram",
+      [
+        15
+      ]
+    ],
+    [
+      "Echo_Green_Future",
+      [
+        478,
+        490
+      ]
+    ],
+    [
+      "Group_Canvas",
+      [
+        13
+      ]
+    ],
+    [
+      "RESTRICTED_SOURCE",
+      [
+        null
+      ]
+    ]
+  ],
+  "private_references_in_public_checkpoint": "private source omitted",
+  "next_focus": [
+    "NexusBoard source-linked governance/permissions and live auth evidence",
+    "Open_Diagram and Group_Canvas integration contracts",
+    "NVE-D exact source reproducibility",
+    "Neon migration authorization and catalog promotion"
+  ],
+  "coverage_limit": "No exhaustive account repository or issue enumeration; initial owner listing page only",
+  "report_url": "https://github.com/AGI144348Outlook/NexusBoard/blob/main/research/reports/NXB-RPT-0004-20261116-issue-review.md"
+}
