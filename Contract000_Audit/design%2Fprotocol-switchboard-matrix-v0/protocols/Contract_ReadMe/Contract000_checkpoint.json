@@ -4,20 +4,28 @@
   "represented_branch": "design/protocol-switchboard-matrix-v0",
   "source_commit": "920aa825f743f705f1f014c54710c50c6efd9367",
   "category": "protocols",
-  "phase": "VERIFY_DIRECTORY",
-  "directory_status": "BLOCKED_RECURSIVE_TREE_LISTING_UNAVAILABLE",
-  "content_status": "NOT_AUDITED",
-  "last_completed_file": null,
-  "within_file_position": null,
+  "phase": "READ_SOURCE_FILES",
+  "directory_status": "PINNED_ALL_7_MATCH; CURRENT_MAIN_SOURCE_ADDITIONS_PENDING_HEADER_REFRESH",
+  "content_status": "PARTIAL",
+  "last_completed_file": ".github/ISSUE_TEMPLATE/architecture-proposal.md",
+  "within_file_position": "EOF (21 lines)",
   "findings": [],
   "blockers": [
     {
-      "code": "CURRENT_RECURSIVE_TREE_UNAVAILABLE",
-      "detail": "Available GitHub connector cannot enumerate all current branch recursive source trees for comparison with the seven-branch names-only header; no content audit may be claimed."
+      "code": "CURRENT_MAIN_DIRECTORY_HEADER_DRIFT",
+      "detail": "All seven pinned recursive trees exactly match 188 names-only header rows. Current main has 13 new source paths under research/ since pinned main; header refresh across all category copies pending coherent regeneration."
     }
   ],
   "next_directory": "../../skills/Contract_ReadMe/Contract000_readme.md",
-  "resume": "Verify current seven branch tips and full recursive source paths/types against the header, excluding root Contract000_Audit/**; then begin first source file.",
+  "resume": "Next file .github/ISSUE_TEMPLATE/pre-test-plan.md at line 1 on pinned design/protocol-switchboard-matrix-v0; verify refreshed main additions in mirrored headers before declaring current directory synchronized.",
   "report_issue": "https://github.com/AGI144348Outlook/NexusBoard/issues/6#issuecomment-6892704784",
-  "updated": "2026-11-15"
+  "updated": "2026-11-16",
+  "last_completed_source": {
+    "branch": "design/protocol-switchboard-matrix-v0",
+    "commit": "920aa825f743f705f1f014c54710c50c6efd9367",
+    "path": ".github/ISSUE_TEMPLATE/architecture-proposal.md",
+    "blob": "ad64f2e509c16c97f44c4ac9a75142c9981b7443",
+    "state": "READ_NO_PROTOCOL_FINDINGS"
+  },
+  "last_run_id": "automation-turn-11-2026-11-16T12:00:20-06:00"
 }
