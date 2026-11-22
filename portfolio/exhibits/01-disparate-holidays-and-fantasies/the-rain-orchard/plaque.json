@@ -1,0 +1,26 @@
+{
+  "id": "the-rain-orchard",
+  "title": "The Rain Orchard",
+  "description": "In a parched orchard, a young tree grows rain clouds in place of fruit. Created with generative AI.",
+  "alt": "Small blue clouds hang from a tree in a dry terraced orchard, and one rains on bright green seedlings.",
+  "pairing": "Arbor Day × Weather Folklore",
+  "category": "Spring",
+  "wing": "Disparate Holidays & Fantasies",
+  "image": "the-rain-orchard.png",
+  "tags": [
+    "Arbor Day",
+    "orchard",
+    "rain clouds",
+    "seedlings",
+    "weather folklore"
+  ],
+  "redbubble": null,
+  "created_at": "2026-11-21",
+  "scheduled_hour": "2026-11-22T05:00:00Z",
+  "sha256": "f859db83c57f6c0e984eb89d03c6f00bee2f29c5451835b5d0d2e2d37dc353b9",
+  "web_sha256": "5f7e42dc11f3f0bcdb4b768e4dda2d11c165cc029c6f33d2825315c1dcf79db3",
+  "width": 1254,
+  "height": 1254,
+  "size_bytes": 3866548,
+  "gallery": "https://aetherdecay-gallery.kind-grove-3997.chatgpt.site/#art/the-rain-orchard"
+}
