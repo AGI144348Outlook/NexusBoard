@@ -9,6 +9,8 @@
 
 | NXB-RPT-0004 | [2026-11-16 bounded GitHub issue review](reports/NXB-RPT-0004-20261116-issue-review.md) | Source review / partial | MCP, governance, evidence, interfaces |
 
+| NXB-RPT-0005 | [Weekly GitHub-account issue review — 2026-11-23](reports/NXB-RPT-0005-20261123-issue-review.md) | Bounded / source-reported | MCP, permissions, evidence, cross-project integration |
+
 ## Governing workflows
 - [Durable issue-review checkpoint](checkpoints/GITHUB_ISSUES_REVIEW.json) — partial coverage and next focus.
 - [GitHub Account Issue Review Protocol](REPOSITORY_ISSUES_REVIEW_PROTOCOL.md) — separate weekly schedule.
