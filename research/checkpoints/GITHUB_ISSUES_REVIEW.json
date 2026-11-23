@@ -1,36 +1,46 @@
 {
   "schema_version": 1,
-  "review_id": "NXB-RPT-0004",
-  "last_review_date": "2026-11-16",
+  "review_id": "NXB-RPT-0005",
+  "last_review_date": "2026-11-23",
   "scope": "bounded_account_owner_review",
   "account_owner": "AGI144348Outlook",
-  "source_search": "user:AGI144348Outlook is:issue updated:>=2026-11-09",
-  "repositories_content_reviewed": 5,
-  "issues_body_and_comments_reviewed": 10,
+  "source_search": "user:AGI144348Outlook is:issue updated:>=2026-11-16 plus scoped repository issue searches",
+  "repositories_content_reviewed": 7,
+  "issues_body_and_comments_reviewed": 11,
   "neon_catalog_upserts": 0,
-  "neon_status": "DEFAULT_BRANCH_SCHEMA_ABSENT__MIGRATION_AWAITING_APPROVAL",
+  "neon_status": "DEFAULT_BRANCH_SCHEMA_ABSENT__MIGRATION_AWAITING_APPROVAL__2026-11-23",
   "reviewed_issues": [
+    [
+      "Echo_Green_Future",
+      [
+        492
+      ]
+    ],
+    [
+      "Lhea-Tema",
+      [
+        2
+      ]
+    ],
+    [
+      "AGI_Symbolic_Kernel",
+      [
+        2
+      ]
+    ],
     [
       "NexusBoard",
       [
-        3,
-        5,
-        7,
-        8,
-        9
+        4,
+        2,
+        7
       ]
     ],
     [
       "Open_Diagram",
       [
+        13,
         15
-      ]
-    ],
-    [
-      "Echo_Green_Future",
-      [
-        478,
-        490
       ]
     ],
     [
@@ -42,17 +52,20 @@
     [
       "RESTRICTED_SOURCE",
       [
+        null,
         null
       ]
     ]
   ],
-  "private_references_in_public_checkpoint": "private source omitted",
+  "private_references_in_public_checkpoint": "two private issue bodies and comment threads reviewed; source numbers and content intentionally omitted",
   "next_focus": [
-    "NexusBoard source-linked governance/permissions and live auth evidence",
-    "Open_Diagram and Group_Canvas integration contracts",
-    "NVE-D exact source reproducibility",
-    "Neon migration authorization and catalog promotion"
+    "Newly updated owner issues after 2026-11-23",
+    "NexusBoard #3 #5 #8 governance and runtime proof",
+    "Open_Diagram #14 evidence bookshelf and graph-source contracts",
+    "Echo_Green_Future #478 exact parser source reproducibility",
+    "Neon documentation_catalog default-branch migration authorization and actual deployment"
   ],
-  "coverage_limit": "No exhaustive account repository or issue enumeration; initial owner listing page only",
-  "report_url": "https://github.com/AGI144348Outlook/NexusBoard/blob/main/research/reports/NXB-RPT-0004-20261116-issue-review.md"
+  "coverage_limit": "11 issue bodies and comment collections in seven repositories; not exhaustive; owner issue query plus targeted repo search; private references suppressed",
+  "report_url": "https://github.com/AGI144348Outlook/NexusBoard/blob/main/research/reports/NXB-RPT-0005-20261123-issue-review.md",
+  "previous_review_id": "NXB-RPT-0004"
 }
