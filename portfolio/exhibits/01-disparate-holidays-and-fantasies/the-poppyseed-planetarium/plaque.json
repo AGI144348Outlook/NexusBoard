@@ -1,0 +1,28 @@
+{
+  "id": "the-poppyseed-planetarium",
+  "title": "The Poppyseed Planetarium",
+  "description": "On the last day of the seed fair, children duck inside a giant poppy pod. Its seeds float overhead like little worlds before they fall back to earth.",
+  "alt": "Two children sit inside a giant poppy pod and look up at floating seeds arranged like planets, with daylight streaming through the dome.",
+  "pairing": "A late-summer seed fair × a poppy pod planetarium",
+  "category": "Holiday Fantasy",
+  "wing": "Disparate Holidays & Fantasies",
+  "tags": [
+    "poppy seeds",
+    "planetarium",
+    "seed pod",
+    "seed fair",
+    "miniature worlds",
+    "botanical fantasy",
+    "holiday fantasy"
+  ],
+  "redbubble": null,
+  "created_at": "2026-11-26",
+  "scheduled_hour": "2026-11-26T06:00:00Z",
+  "image": "the-poppyseed-planetarium.png",
+  "sha256": "6b9892511793e3fba4b24103902dd258e71c20def4f21ea6677ab4fe4dc19025",
+  "web_sha256": "81580b8eacc72a5c4491d750a8b3910fecd4b7315cdbd305a6765d710d6cdb4b",
+  "width": 1536,
+  "height": 1024,
+  "size_bytes": 3126492,
+  "gallery": "https://aetherdecay-gallery.kind-grove-3997.chatgpt.site/#art/the-poppyseed-planetarium"
+}
